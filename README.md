@@ -84,7 +84,7 @@ The optional ```replacement``` character is used as a filler for non-found place
 
 ### menu
 #### domId
-```ddLocale``` just needs a ```DOM element``` with an ```id``` to place menu button in. This ```achor link``` button gets ```id``` ```{domId}-menu-button``` and can be styled as desired using plain css.
+```ddLocale``` only needs a ```DOM element``` with an ```id``` to place a button and a menu in.
 #### button
 ```button``` determines the button text:
 - ```"long"``` will place ```cultures[].title``` inside the button.
@@ -147,14 +147,24 @@ The JSON format also alow you to you names instead of numbers:
 	let myTranslation = ddLocale.t("hello", {"name":"Master", "lastname":"Mek"});
 ```
 ## Numbers and dates
-To localize numbers and date you can pass ddLocale.culture to the standard toLocaleString and toLocaleDateString.
+To localize numbers and dates you can pass ```ddLocale.culture``` to the standard ```toLocaleString``` and ```toLocaleDateString```.
 
 ## Inline
 
 ## Translation menu
-
+This is an example of what a functional menu looks like. The ```domId="language"``` and ```menu.menu=left```. With ```css``` you can style the menu, using ```id```, ```class``` and ```atrributes```.
+```
+	<div id="language" culture="nl-NL" class="open">
+		<a id="language-menu-button"></a>
+		<div class="left" id="language-menu-container">
+			<a culture="en">English</a>
+			<a class="selected" culture="nl-NL">Nederlands</a>
+		</div>
+	</div>
+```
 ## css
-Below is a simple example of all css menu options when ```menu.domId``` is set to ```"language"``` and where ```menu.menu``` is set to ```"left"```, ```"center"``` or ```"right"```.
+Below is a simple css example to style the menu.
+An important note about the main div with ```id="language"``` though. Because the popup menu is inside the main div with ```id="language"```, this main div must have an explicit ```absolute``` or ```relative``` position!
 ```
 #language {
 	position: absolute;
