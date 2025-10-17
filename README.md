@@ -77,10 +77,23 @@ Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be se
 If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Just leave out ```./``` and ```/```.
 
 ### language, country and culture
-```language``` and ```country``` define ```culture```. Make sure the combination matches the JSON language file name, for example ```nl-BE.json``` or ```en.json```.
+```language``` and ```country``` define ```culture```. Make sure the ```culture``` matches the JSON language file name, for example ```nl-BE.json``` or ```en.json```.
 
 ### replacement
 The optional ```replacement``` character is used as a filler for non-found placeholder expressions.
+
+### menu
+```ddLocale``` just needs a ```dom element``` with an ```id``` to place the menu in.
+#### domId
+This is the id. ```ddLocale``` will fill ```dom element``` with an ```achor link``` with the id ```{domId}-menu-button```.
+#### button
+With ```button``` you decide what ```ddLocale``` will place inside.
+- ```"long"``` will place ```cultures.title``` in the button.
+- ```"short"``` will place the property ```language``` in the button.
+- An empty string ```""``` will leave button empty.
+- Any other string will be considered a ```key``` to be translated.
+#### menu
+Without ```menu``` the button will toggle through the availabel languages. Otherwise ```menu``` is actually a className givven to the popup menu that you can use for styling.
 
 ### ready
 The ```ready()``` function will be called each time a new language is set and loaded. Use this function to save user settings with the new language for example.
@@ -88,14 +101,59 @@ The ```ready()``` function will be called each time a new language is set and lo
 ### success
 If other scripts or libraries use ```ddLocale``` you can start their initialisation from the ```success()``` function. ```success()``` will only be called once per (page) load.
 
-## placeholder expressions
-
 ## JSON-language files
+Language files are json files. Make sure the ```culture``` matches the JSON language file name, for example ```nl-BE.json``` or ```en.json```. Please note the following rules:
+- All language files should have the same ```keys```.
+- ```keys``` are case sensitive.
+- If a ```value``` is an empty string ```ddLocale``` will just return the ```key``` as the translated result.
+- You can use nested ```keys```.
+- You can also use placeholders as numbers ```{0}``` (Array-style) or as ```{names}``` (JSON-style).
+```
+	{
+		"tool name": "ddLocale",
+		"hello": "Hello {name} {lastname}.",
+		"exit": {
+			"goodbye": "A presto {0} {1}."
+		},
+  		"Cancel": ""
+	}
+```
 
-# Usage
-## Scripting
-### 
+## Basic usage
+You can put ddLocal to work via scripting. Just pass the ```key``` to ```ddLocale.t()``` translation function:
+```
+	let myTranslation = ddLocale.t("tool name");
+```
+Or use the extended ```String.t()``` function:
+```
+	let myTranslation = "tool name".t();
+	let key = "tool name";
+	myTranslation = key.t();
+```
+## Placeholders
+If you are calling a ```key``` with a ```value``` that contains placeholders, you must fill them in.
+Pass numbered placeholder expressions as attributes or in JSON format:
+```
+	let myTranslation = ddLocale.t("exit.goodbye", "Master", "Mek");
+	myTranslation = "exit.goodbye".t("Master", "Mek");
+```
+Or use the JSON format:
+```
+	let myTranslation = ddLocale.t("exit.goodbye", {"0":"Master", "1":"Mek"});
+	myTranslation = "exit.goodbye".t({"1":"Master", "0":"Mek"});
+```
+The JSON format also alow you to you names instead of numbers:
+
+```
+	let myTranslation = ddLocale.t("hello", {"name":"Master", "lastname":"Mek"});
+```
+## Numbers
+
+## Dates
+
 ## Inline
+
+## Translation menu
 
 ## css
 Below is a simple example of all css menu options when ```menu.domId``` is set to ```"language"``` and where ```menu.menu``` is set to ```"left"```, ```"center"``` or ```"right"```.
