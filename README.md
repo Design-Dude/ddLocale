@@ -65,13 +65,13 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 To change the language you can ```ddLocale.set(...)``` which is an alternative to ```.init(...)```.
 
 ### cultures
-Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object have a ```culture```, ```title``` and optional ```direction```.
-#### cultures.culture
-This is a standard country or language code like ```"nl-NL"``` or ```"en"``` Make sure the ```culture``` matches an available JSON language file name, for example ```nl-NL.json``` or ```en.json```.
-#### cultures.title
-The name of language in it's own language.
-#### cultures.direction
-Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
+Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object has a ```culture```, ```title``` and optional ```direction```.
+	#### culture
+	This is a standard country or language code like ```"nl-NL"``` or ```"en"``` Make sure the ```culture``` matches an available JSON language file name, for example ```nl-NL.json``` or ```en.json```.
+	#### title
+	The name of language in it's own language.
+	#### direction
+	Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
 
 ### path
 If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Just leave out ```./``` and ```/```.
