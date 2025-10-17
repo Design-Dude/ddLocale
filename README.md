@@ -66,12 +66,12 @@ To change the language you can ```ddLocale.set(...)``` which is an alternative t
 
 ### cultures
 Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object has a ```culture```, ```title``` and optional ```direction```.
-	#### culture
-	This is a standard country or language code like ```"nl-NL"``` or ```"en"``` Make sure the ```culture``` matches an available JSON language file name, for example ```nl-NL.json``` or ```en.json```.
-	#### title
-	The name of language in it's own language.
-	#### direction
-	Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
+#### culture
+This is a standard country or language code like ```"nl-NL"``` or ```"en"``` Make sure the ```culture``` matches an available JSON language file name, for example ```nl-NL.json``` or ```en.json```.
+#### title
+The name of language in it's own language.
+#### direction
+Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
 
 ### path
 If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Just leave out ```./``` and ```/```.
@@ -83,10 +83,10 @@ If your JSON-language files are not in a ```./lang/``` folder you can specify th
 The optional ```replacement``` character is used as a filler for non-found placeholder expressions.
 
 ### ready
-The ```ready``` function will be called each time a new language is set and loaded. Use this function to save user settings with the new language for example.
+The ```ready()``` function will be called each time a new language is set and loaded. Use this function to save user settings with the new language for example.
 
 ### success
-If other scripts or libraries use ```ddLocale``` you can start their initialisation from the ```ready``` function. ```ready``` will only be called once per page load.
+If other scripts or libraries use ```ddLocale``` you can start their initialisation from the ```success()``` function. ```success()``` will only be called once per (page) load.
 
 ## placeholder expressions
 
@@ -95,16 +95,15 @@ If other scripts or libraries use ```ddLocale``` you can start their initialisat
 ```var my_color = new ddBasecolor(color, ymck=false);```
 Call ```ddBasecolor``` and provide any valid web colour specification. The following examples all create a red colour object, some with alpha channel.
 
-- [x] Make bezier from points
-- [x] Use data instead of spline
-- [x] Move outgoing tangents to previous point in data + adjsutment script
-- [ ] ~~Change weight into weightDistribution (nope)~~
 
 You must always click the _Spiralize_ button first to start the drawing process. Subsequent updates can be automated by checking the _Auto update_ option. The operations are terminated as soon as the ddSpiral overlay is closed or loses its focus. The last option _Remove pre-selected objects_ automatically starts a cleaning process during this final termination.
 
 ### 1. Select a single object, such as an image, group, or symbol, and then run ddSpiral
 If you select 1 object, not a path, the spiral rotates from the bounding box to the center of the object. Position, size and rotation are inherited from the selected object. The spiral is drawn on top of the object in the same group.
 
+
+## css
+Below is an simple example of all css menu options when ```menu.domId``` is set to ```"language"``` and where the additions ```.left```, ```.center``` and ```.right``` to ```...menu-container``` are examples of the ```menu.menu``` class name.
 ```
 #language {
 	position: absolute;
@@ -184,11 +183,13 @@ body[direction=rtl] #language-menu-container.left {
 }
 ```
 
+## Whishlist
+- [ ] Active placeholder expressions in static inline attributes...
 
-If you like it you may consider [buying me a coffee](https://www.buymeacoffee.com/Mastermek).
+If you like ```ddLocale``` you may consider [buying me a coffee](https://www.buymeacoffee.com/Mastermek).
 
 [![Screenshot](repository_images/coffee.svg)](https://www.buymeacoffee.com/Mastermek)
 
-Thank you for using ddSpiral.
+Thank you for using ddLocale.
 
 Mek
