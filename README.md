@@ -67,7 +67,7 @@ To change the language you may use ```ddLocale.set(...)``` which is just an alte
 ### cultures
 Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object has a ```culture```, ```title``` and optional ```direction```.
 #### culture
-This is a standard country or language code like ```"nl-NL"``` or ```"en"``` Make sure that ```culture``` matches an available JSON language file name, for example ```nl-NL``` or ```en```.
+This is a standard country or language code like ```"nl-NL"``` or ```"en"```. Make sure that ```culture``` matches the corresponding JSON language file name, for example ```nl-NL```.json or ```en```.json.
 #### title
 The name of language in it's own language for use in the drop down language menu.
 #### direction
@@ -77,7 +77,7 @@ Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be se
 If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Just leave out ```./``` and ```/```.
 
 ### language, country and culture
-```language``` and ```country``` define ```culture```. Make sure the ```culture``` matches the JSON language file name, for example ```nl-BE.json``` or ```en.json```.
+```language``` and ```country``` define ```culture```. Make sure that ```culture``` matches one of ```cultures``` objects.
 
 ### replacement
 The optional ```replacement``` character is used as a filler for non-found placeholder expressions.
