@@ -66,11 +66,11 @@ To change the language you may use ```ddLocale.set(...)``` which is just an alte
 
 ### cultures
 Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object has a ```culture```, ```title``` and optional ```direction```.
-#### culture
+- #### culture
 This is a standard country or language code like ```"nl-NL"``` or ```"en"```. Make sure that ```culture``` matches the corresponding JSON language file name, for example ```nl-NL```.json or ```en```.json.
-#### title
+- #### title
 The name of language in it's own language for use in the drop down language menu.
-#### direction
+- #### direction
 Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
 
 ### path
