@@ -7,17 +7,63 @@ ddLocale is a completely independent JavaScript library.
 The plugin was created with Sketch Plugin Manager, so if you are planning to use the source code you'll probably need [SKPM](https://github.com/skpm/skpm) too. Together with [sketch-module-web-view](https://github.com/skpm/sketch-module-web-view/tree/master/docs) as a bridge between the plugin and the overlay for user input.
 
 ## Installation
-Download and double-click the [latest version.](https://github.com/Design-Dude/ddSpiral/releases/latest) Or drop it on the Sketch app icon. 
+Download and double-click the [latest version.](https://github.com/Design-Dude/ddSpiral/releases/latest) and include the Javascript in your project.
+You can also use this link for the latest version.
+```
+	<script src="./.../ddLocale.js"></script>
+```
 
-## How it works
-Just select up to 2 objects and/or an open path and run 🌀 ddSpiral from 🧰 ddTools in the plugin menu. You can also hit CTRL-ALT-SHIFT-S (All future ddTools wil use CTRL-ALT-SHIFT). The plugin presents you with an overlay for adjustments. The spiral will behave slightly differently depending on the selected objects. As long as you stay in the overlay you can update the spiral by altering:
-- size and rotation (preset by the selected objects)
-- direction (clockwise or counterclockwise),
-- number of loops,
-- number of points per loop (tangents),
-- tension (0%=sharp corners, 100%=optimal curves, <500%=experimental loose curves).
-- transition (linear, ease in and out, ease-in or ease-out),
-- and easing rate (0%=linear, 50%=standard css easing, <500%=exponetial).
+## Initialisation
+Always initialize ```ddLocale``` after loading. Normally, you'll probably load your settings first, which store the user's language choice. You can also use your browser's local date/time settings to specify ```ddLocale```. By default, ```ddLocale``` is set to "en", regardless of whether that translation exists.
+
+```
+	_Locale.init({
+		log: false, _// optional, default true_
+		language: '', _// optional, uppercase_
+		country: '', _// lowercase_
+		culture: 'nl-NL', _// optional, overrules language and country if set
+		replacement: '?', _// optional, default __ _  
+		path: "lang", _// path from the root to the language files_
+		ready: function (object) {
+			_/*
+				new language loaded
+				you can use object to save settings for example
+				object = {
+					language: "nl",
+					country: "NL",
+					culture: "nl-NL",
+					title: "Nederlands"
+				}
+			*/_
+		},
+		success: function (err) {
+			_/*
+				ddLocale is now ready for use
+			*/_
+		},
+		failed: function (err) {
+			_/*
+				something went wrong
+			*/_
+		},
+		menu: {
+			domId: 'language', _// id of dom node where language menu will be triggered_
+			button: '', _// long, short or some translation key_
+			menu: 'center' _// className for the dropdown menu_
+		},
+		cultures: [ _// all available languages_
+			{
+				code: "en",
+				title: "English"
+			},
+			{
+				code: "nl-NL",
+				title: "Nederlands"
+			}
+		],
+		nocache: false _// if true language files will be loaded using timestamps_
+	});
+```
 
 ```var my_color = new ddBasecolor(color, ymck=false);```
 Call ```ddBasecolor``` and provide any valid web colour specification. The following examples all create a red colour object, some with alpha channel.
