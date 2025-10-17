@@ -83,17 +83,16 @@ If your JSON-language files are not in a ```./lang/``` folder you can specify th
 The optional ```replacement``` character is used as a filler for non-found placeholder expressions.
 
 ### menu
-```ddLocale``` just needs a ```dom element``` with an ```id``` to place the menu in.
 #### domId
-This is the id. ```ddLocale``` will fill ```dom element``` with an ```achor link``` with the id ```{domId}-menu-button```.
+```ddLocale``` just needs a ```DOM element``` with an ```id``` to place menu button in. This ```achor link``` button gets ```id``` ```{domId}-menu-button``` and can be styled as desired using plain css.
 #### button
-With ```button``` you decide what ```ddLocale``` will place inside.
-- ```"long"``` will place ```cultures.title``` in the button.
-- ```"short"``` will place the property ```language``` in the button.
+```button``` determines the button text:
+- ```"long"``` will place ```cultures[].title``` inside the button.
+- ```"short"``` will place the property ```ddLocale.language``` inside the button.
 - An empty string ```""``` will leave button empty.
-- Any other string will be considered a ```key``` to be translated.
+- Any other string is considered a ```key``` to be translated.
 #### menu
-Without ```menu``` the button will toggle through the availabel languages. Otherwise ```menu``` is actually a className givven to the popup menu that you can use for styling.
+Without the ```menu``` option, the button cycles through the available languages. With the ```menu``` option selected, the button opens a popup menu with all available languages ​​from ```cultures```. The value of ```menu``` is used as the className to style the popup menu.
 
 ### ready
 The ```ready()``` function will be called each time a new language is set and loaded. Use this function to save user settings with the new language for example.
