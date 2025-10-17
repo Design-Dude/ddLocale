@@ -32,7 +32,84 @@ You must always click the _Spiralize_ button first to start the drawing process.
 ### 1. Select a single object, such as an image, group, or symbol, and then run ddSpiral
 If you select 1 object, not a path, the spiral rotates from the bounding box to the center of the object. Position, size and rotation are inherited from the selected object. The spiral is drawn on top of the object in the same group.
 
-![Screenshot](repository_images/object.svg)
+```
+#language {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	border: 0px solid #1D6F42;
+	top: 25px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	cursor: hand;
+	cursor: pointer;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+	z-index: 10;
+}
+#language[culture=nl-NL] {
+	background-image: url('../images/flags/nl.svg');
+}
+#language[culture=en] {
+	background-image: url('../images/flags/en.svg');
+}
+#language.open {}
+#language-menu-container {
+	position: absolute;
+	background-color: white;
+	z-index: 100;
+	top: 100%;
+	left: 0;
+	transform: translate(0, 10px);
+}
+#language-menu-container.left {
+	left: 0;
+	transform: translate(0, 10px);
+}
+body[direction=rtl] #language-menu-container.left {
+	left: 100%;
+	transform: translate(-100%, 10px);
+}
+#language-menu-container.right
+{
+	left: 100%;
+	transform: translate(-100%, 10px);
+}
+#language-menu-container.center {
+	left: 50%;
+	transform: translate(-50%, 10px);
+}
+#language-menu-button {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+#language-menu-container a {
+	display: block;
+	line-height: 16px;
+	border-bottom: 1px solid black;
+	padding: 8px 10px;
+}
+#language-menu-container.center a {
+	text-align: center;
+}
+#language-menu-container a.selected {
+	background-color: lightgrey;
+	cursor: default;
+	text-decoration: none;
+	color: black;
+}
+#language-menu-container a:not(.selected):hover {
+	background-color: grey;
+	color: white;
+}
+#language-menu-container a:last-child {
+	border-bottom: 0;
+}
+```
 
 
 If you like it you may consider [buying me a coffee](https://www.buymeacoffee.com/Mastermek).
