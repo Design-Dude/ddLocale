@@ -17,15 +17,15 @@ You can also use this link for the latest version.
 Always initialize ```ddLocale``` after loading. Normally, you'll probably load your settings first, which store the user's language choice. You can also use your browser's local date/time settings to specify ```ddLocale```. By default, ```ddLocale``` is set to "en", regardless of whether that translation exists.
 
 ```
-	_Locale.init({
-		log: false, _// optional, default true_
-		language: '', _// optional, uppercase_
-		country: '', _// lowercase_
-		culture: 'nl-NL', _// optional, overrules language and country if set
-		replacement: '?', _// optional, default __ _  
-		path: "lang", _// path from the root to the language files_
+	ddLocale.init({
+		log: false, // optional, default true
+		language: '', // optional, uppercase
+		country: '', // lowercase
+		culture: 'nl-NL', // optional, overrules language and country if set
+		replacement: '?', // optional, default __ 
+		path: "lang", // path from the root to the language files
 		ready: function (object) {
-			_/*
+			/*
 				new language loaded
 				you can use object to save settings for example
 				object = {
@@ -34,22 +34,16 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 					culture: "nl-NL",
 					title: "Nederlands"
 				}
-			*/_
+			*/
 		},
-		success: function (err) {
-			_/*
-				ddLocale is now ready for use
-			*/_
+		success: function (err) { // ddLocale is now ready for use
 		},
-		failed: function (err) {
-			_/*
-				something went wrong
-			*/_
+		failed: function (err) { // something went wrong
 		},
 		menu: {
-			domId: 'language', _// id of dom node where language menu will be triggered_
-			button: '', _// long, short or some translation key_
-			menu: 'center' _// className for the dropdown menu_
+			domId: 'language', // id of dom node where language menu will be triggered
+			button: '', // long, short or some translation key
+			menu: 'center' // className for the dropdown menu
 		},
 		cultures: [ _// all available languages_
 			{
@@ -58,10 +52,11 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 			},
 			{
 				code: "nl-NL",
-				title: "Nederlands"
+				title: "Nederlands",
+				direction: "ltr" // optional ltr or rtl
 			}
 		],
-		nocache: false _// if true language files will be loaded using timestamps_
+		nocache: false // if true language files will be loaded using timestamps
 	});
 ```
 
