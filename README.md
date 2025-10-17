@@ -19,10 +19,10 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 ```
 	ddLocale.init({
 		log: false, // optional, default true
-		language: '', // optional, uppercase
-		country: '', // lowercase
-		culture: 'nl-NL', // optional, overrules language and country if set
-		replacement: '?', // optional, default __ 
+		language: "", // optional if culture is used, default "en" (lowercase)
+		country: "", // optional, default "" (uppercase)
+		culture: "nl-NL", // optional, overrules language and country if set
+		replacement: "?", // optional, default __
 		path: "lang", // path from the root to the language files
 		ready: function (object) {
 			/*
@@ -37,15 +37,16 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 			*/
 		},
 		success: function (err) { // ddLocale is now ready for use
+			// resume initialisation scripts
 		},
 		failed: function (err) { // something went wrong
 		},
 		menu: {
-			domId: 'language', // id of dom node where language menu will be triggered
-			button: '', // long, short or some translation key
-			menu: 'center' // className for the dropdown menu
+			domId: "language", // id of dom-node where language menu will be triggered
+			button: "", // "long" title, "short" language code or some translation "key"
+			menu: "center" // optional, className for the dropdown menu
 		},
-		cultures: [ _// all available languages_
+		cultures: [ // all available languages
 			{
 				code: "en",
 				title: "English"
