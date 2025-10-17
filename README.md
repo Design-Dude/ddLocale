@@ -62,7 +62,7 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 ```
 
 ## Properties
-To change the language you can ```ddLocale.set(...)``` which is an alternative to ```.init(...)```.
+To change the language you may use ```ddLocale.set(...)``` which is just an alternative to ```.init(...)```.
 
 ### cultures
 Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object has a ```culture```, ```title``` and optional ```direction```.
@@ -147,9 +147,8 @@ The JSON format also alow you to you names instead of numbers:
 ```
 	let myTranslation = ddLocale.t("hello", {"name":"Master", "lastname":"Mek"});
 ```
-## Numbers
-
-## Dates
+## Numbers and dates
+To localize numbers and date you can pass ddLocale.culture to the standard toLocaleString and toLocaleDateString.
 
 ## Inline
 
@@ -238,6 +237,8 @@ body[direction=rtl] #language-menu-container.left {
 
 ## Whishlist
 - [ ] Active placeholder expressions in static inline attributes...
+
+
 
 If you like ```ddLocale``` you may consider [buying me a coffee](https://www.buymeacoffee.com/Mastermek).
 
