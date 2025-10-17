@@ -92,18 +92,13 @@ If other scripts or libraries use ```ddLocale``` you can start their initialisat
 
 ## JSON-language files
 
-```var my_color = new ddBasecolor(color, ymck=false);```
-Call ```ddBasecolor``` and provide any valid web colour specification. The following examples all create a red colour object, some with alpha channel.
-
-
-You must always click the _Spiralize_ button first to start the drawing process. Subsequent updates can be automated by checking the _Auto update_ option. The operations are terminated as soon as the ddSpiral overlay is closed or loses its focus. The last option _Remove pre-selected objects_ automatically starts a cleaning process during this final termination.
-
-### 1. Select a single object, such as an image, group, or symbol, and then run ddSpiral
-If you select 1 object, not a path, the spiral rotates from the bounding box to the center of the object. Position, size and rotation are inherited from the selected object. The spiral is drawn on top of the object in the same group.
-
+# Usage
+## Scripting
+### 
+## Inline
 
 ## css
-Below is an simple example of all css menu options when ```menu.domId``` is set to ```"language"``` and where the additions ```.left```, ```.center``` and ```.right``` to ```...menu-container``` are examples of the ```menu.menu``` class name.
+Below is a simple example of all css menu options when ```menu.domId``` is set to ```"language"``` and where ```menu.menu``` is set to ```"left"```, ```"center"``` or ```"right"```.
 ```
 #language {
 	position: absolute;
