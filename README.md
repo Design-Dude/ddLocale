@@ -164,7 +164,7 @@ This is an example of what a functional menu looks like. The ```domId="language"
 ```
 ## css
 Below is a simple css example to style the menu.
-An important note about the main div with ```id="language"``` though. Because the popup menu is inside the main div with ```id="language"```, this main div must have an explicit ```absolute``` or ```relative``` position!
+An important note about the main div with ```id="language"``` though. Because the popup menu is inside the main div with ```id="language"```, this main div must have an explicit ```absolute``` or ```relative``` position and the menu's container with ```id="language-menu-container"``` should be ```absolute```!
 ```
 #language {
 	position: absolute;
