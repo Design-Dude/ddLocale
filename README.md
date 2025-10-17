@@ -132,7 +132,7 @@ Or use the extended ```String.t()``` function:
 ```
 ## Placeholders
 If you are calling a ```key``` with a ```value``` that contains placeholders, you must fill them in.
-Pass numbered placeholder expressions as attributes or in JSON format:
+Pass numbered placeholder expressions as attributes:
 ```
 	let myTranslation = ddLocale.t("exit.goodbye", "Master", "Mek");
 	myTranslation = "exit.goodbye".t("Master", "Mek");
