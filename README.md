@@ -21,7 +21,7 @@ Just select up to 2 objects and/or an open path and run 🌀 ddSpiral from 🧰 
 
 ```var my_color = new ddBasecolor(color, ymck=false);```
 Call ```ddBasecolor``` and provide any valid web colour specification. The following examples all create a red colour object, some with alpha channel.
-```
+
 - [x] Make bezier from points
 - [x] Use data instead of spline
 - [x] Move outgoing tangents to previous point in data + adjsutment script
