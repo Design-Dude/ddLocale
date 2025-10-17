@@ -18,12 +18,27 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 
 ```
 	ddLocale.init({
-		log: false, // optional, default true
+		cultures: [ // all available languages
+			{
+				culture: "en",
+				title: "English"
+			},
+			{
+				culture: "nl-NL",
+				title: "Nederlands",
+				direction: "ltr" // optional ltr or rtl
+			}
+		],
+		path: "lang", // path from the root to the language files, default "lang"
 		language: "", // optional if culture is used, default "en" (lowercase)
 		country: "", // optional, default "" (uppercase)
 		culture: "nl-NL", // optional, overrules language and country if set
 		replacement: "?", // optional, default __
-		path: "lang", // path from the root to the language files, default "lang"
+		menu: {
+			domId: "language", // id of dom-node where language menu will be triggered
+			button: "", // "long" title, "short" language code or some translation "key"
+			menu: "center" // optional, className for the dropdown menu
+		},
 		ready: function (object) {
 			/*
 				new language loaded
@@ -41,22 +56,7 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 		},
 		failed: function (err) { // something went wrong
 		},
-		menu: {
-			domId: "language", // id of dom-node where language menu will be triggered
-			button: "", // "long" title, "short" language code or some translation "key"
-			menu: "center" // optional, className for the dropdown menu
-		},
-		cultures: [ // all available languages
-			{
-				code: "en",
-				title: "English"
-			},
-			{
-				code: "nl-NL",
-				title: "Nederlands",
-				direction: "ltr" // optional ltr or rtl
-			}
-		],
+		log: false, // optional, default true
 		nocache: false // if true language files will be loaded using timestamps
 	});
 ```
@@ -64,15 +64,29 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 ## Properties
 To change the language you can ```ddLocale.set(...)``` which is an alternative to ```.init(...)```.
 
-#### language, country an d culture
-```language``` and ```country``` determine ```culture``` which is the als the name of JSON-language file.
+### cultures
+Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object have a ```culture```, ```title``` and optional ```direction```.
+#### cultures.culture
+This is a standard country or language code like ```"nl-NL"``` or ```"en"``` Make sure the ```culture``` matches an available JSON language file name, for example ```nl-NL.json``` or ```en.json```.
+#### cultures.title
+The name of language in it's own language.
+#### cultures.direction
+Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
 
-#### replacement
-The ```replacement``` character is used as a filler for non-found placeholder expressions.
+### path
+If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Just leave out ```./``` and ```/```.
 
-#### path
-If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Leave out the preceding ```./``` and leading ```/```. 
+### language, country and culture
+```language``` and ```country``` define ```culture```. Make sure the combination matches the JSON language file name, for example ```nl-BE.json``` or ```en.json```.
 
+### replacement
+The optional ```replacement``` character is used as a filler for non-found placeholder expressions.
+
+### ready
+The ```ready``` function will be called each time a new language is set and loaded. Use this function to save user settings with the new language for example.
+
+### success
+If other scripts or libraries use ```ddLocale``` you can start their initialisation from the ```ready``` function. ```ready``` will only be called once per page load.
 
 ## placeholder expressions
 
