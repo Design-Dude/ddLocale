@@ -130,21 +130,20 @@ Or use the extended ```String.t()``` function:
 	myTranslation = key.t();
 ```
 ## Placeholders
-If you are calling a ```key``` with a ```value``` that contains placeholders, you must fill them in.
-Pass numbered placeholder expressions as attributes:
+If you are calling a ```key``` with a ```value``` that contains placeholders, you must fill them in. Pass numbered placeholders, such as ```{0}``` and ```{1}```, as comma-separated attributes:
 ```
-	let myTranslation = ddLocale.t("exit.goodbye", "Master", "Mek");
-	myTranslation = "exit.goodbye".t("Master", "Mek");
+	let myTranslation = ddLocale.t( "exit.goodbye", "Master", "Mek" );
+	myTranslation = "exit.goodbye".t( "Master", "Mek" );
 ```
-Or use the JSON format:
+Or use the JSON format like this:
 ```
-	let myTranslation = ddLocale.t("exit.goodbye", {"0":"Master", "1":"Mek"});
-	myTranslation = "exit.goodbye".t({"1":"Master", "0":"Mek"});
+	let myTranslation = ddLocale.t( "exit.goodbye", {"0":"Master", "1":"Mek"} );
+	myTranslation = "exit.goodbye".t( {"1":"Master", "0":"Mek"} );
 ```
 The JSON format also alow you to you names instead of numbers:
 
 ```
-	let myTranslation = ddLocale.t("hello", {"name":"Master", "lastname":"Mek"});
+	let myTranslation = ddLocale.t( "hello", {"name":"Master", "lastname":"Mek"} );
 ```
 ## Numbers and dates
 To localize numbers and dates you can pass ```ddLocale.culture``` to the standard ```toLocaleString``` and ```toLocaleDateString```.
