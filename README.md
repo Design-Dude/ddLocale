@@ -29,7 +29,7 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 				direction: "ltr" // optional ltr or rtl
 			}
 		],
-		path: "lang", // path from the root to the language files, default "lang"
+		path: "lang/", // path from the root to the language files, default "lang/"
 		language: "", // optional if culture is used, default "en" (lowercase)
 		country: "", // optional, default "" (uppercase)
 		culture: "nl-NL", // optional, overrules language and country if set
