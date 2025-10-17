@@ -23,7 +23,7 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 		country: "", // optional, default "" (uppercase)
 		culture: "nl-NL", // optional, overrules language and country if set
 		replacement: "?", // optional, default __
-		path: "lang", // path from the root to the language files
+		path: "lang", // path from the root to the language files, default "lang"
 		ready: function (object) {
 			/*
 				new language loaded
@@ -60,6 +60,23 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 		nocache: false // if true language files will be loaded using timestamps
 	});
 ```
+
+## Properties
+To change the language you can ```ddLocale.set(...)``` which is an alternative to ```.init(...)```.
+
+#### language, country an d culture
+```language``` and ```country``` determine ```culture``` which is the als the name of JSON-language file.
+
+#### replacement
+The ```replacement``` character is used as a filler for non-found placeholder expressions.
+
+#### path
+If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Leave out the preceding ```./``` and leading ```/```. 
+
+
+## placeholder expressions
+
+## JSON-language files
 
 ```var my_color = new ddBasecolor(color, ymck=false);```
 Call ```ddBasecolor``` and provide any valid web colour specification. The following examples all create a red colour object, some with alpha channel.
