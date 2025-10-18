@@ -195,9 +195,19 @@ To make things a bit easier, you can set your options in ```toStringOptions``` a
 
 
 ## Inline
+Static elements can be translatable too. Just place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
+```
+	<div id="container">
+		<h1 t="tool name"></h1>
+	</div>
+```
 
 ## Translation menu
-This is an example of what a functional menu looks like. The ```domId="language"``` and ```menu.menu=left```. With ```css``` you can style the menu, using ```id```, ```class``` and ```atrributes```.
+To use the ```ddLocale``` menu you will need a placeholder in your HTML document.
+```
+	<div id="language"></div>
+```
+This is an example of what the functional menu looks like after initialisation with ```domId="language"``` and ```menu.menu=left```. With ```css``` you can style the menu, using ```id```, ```class``` and ```atrributes```.
 ```
 	<div id="language" culture="nl-NL" class="open">
 		<a id="language-menu-button"></a>
@@ -207,7 +217,9 @@ This is an example of what a functional menu looks like. The ```domId="language"
 		</div>
 	</div>
 ```
+
 ## css
+
 Below is a simple css example to style the menu.
 An important note about the main div with ```id="language"``` though. Because the popup menu is inside the main div with ```id="language"```, this main div must have an explicit ```absolute``` or ```relative``` position and the menu's container with ```id="language-menu-container"``` should be ```absolute```!
 ```
