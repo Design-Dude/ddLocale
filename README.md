@@ -202,6 +202,13 @@ Static elements can be translatable too. Just place the ```key``` inside a ```t`
 	</div>
 ```
 Dates and numbers can also be static, but only if any options are stored in ```toStringOptions```.
+
+Numbers...
+```
+	<div id="container">
+		<span t="1760565600000" data-t-num="eur"></span>
+	</div>
+```
 For dates, the static representation must be a timestamp ```new Date().getTime()``` and the option name must be in the attribute ```data-t-date```. The option name is cumpulory because with it the timestamp is just a number.
 ```
 	<div id="container">
