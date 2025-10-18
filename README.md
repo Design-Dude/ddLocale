@@ -201,6 +201,13 @@ Static elements can be translatable too. Just place the ```key``` inside a ```t`
 		<h1 t="tool name"></h1>
 	</div>
 ```
+Dates and numbers can also be static, but only if any options are stored in ```toStringOptions```.
+For dates, the static representation must be a timestamp ```new Date().getTime()``` and the option name must be in the attribute ```data-t-date```. The option name is cumpulory because with it the timestamp is just a number.
+```
+	<div id="container">
+		<span t="1760565600000" data-t-date="shortDate"></span>
+	</div>
+```
 
 ## Translation menu
 To use the ```ddLocale``` menu you will need a placeholder in your HTML document.
