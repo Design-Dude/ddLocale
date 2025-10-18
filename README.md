@@ -201,6 +201,14 @@ Static elements can be translatable too. Just place the ```key``` inside a ```t`
 		<h1 t="tool name"></h1>
 	</div>
 ```
+If the inline key has placeholders the corrresponding values must be present in data-t+* attributes, where * is a corresponding key.
+```
+	<div id="container">
+		<h1 t="hello" data-t+name="Master" data-t+lastname="Mek"></h1>
+	</div>
+```
+
+### Dates and numbers
 Dates and numbers can also be static, but only if any options are stored in ```toStringOptions```.
 
 Numbers...
