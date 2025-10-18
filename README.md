@@ -174,7 +174,7 @@ The JSON format also alow you to you names instead of numbers:
 ## Numbers and dates
 To localize numbers and dates you can pass ```ddLocale.culture``` to the standard ```toLocaleString``` and/or ```toLocaleDateString```.
 ```
-	let dateString = new Date().toLocalString(ddLocale.culture, {
+	let dateString = new Date().toLocaleString(ddLocale.culture, {
 		year: "numeric",
 		month: "short",
 		day: "numeric",
