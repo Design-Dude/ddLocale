@@ -1,10 +1,12 @@
 # ddLocale
 Very lightweight and easy to use JavaScript library for multilingual web apps and sites. Supports both script and inline translations for text, numbers, and dates from nestable JSON sources. Includes functionality for a fully customizable language menu.
 
+
 ## Dependencies
 ddLocale is a completely independent JavaScript library.
 
 The plugin was created with Sketch Plugin Manager, so if you are planning to use the source code you'll probably need [SKPM](https://github.com/skpm/skpm) too. Together with [sketch-module-web-view](https://github.com/skpm/sketch-module-web-view/tree/master/docs) as a bridge between the plugin and the overlay for user input.
+
 
 ## Installation
 Download and double-click the [latest version.](https://github.com/Design-Dude/ddSpiral/releases/latest) and include the Javascript in your project.
@@ -12,6 +14,7 @@ You can also use this link for the latest version.
 ```
 	<script src="./.../ddLocale.js"></script>
 ```
+
 
 ## Initialisation
 Always initialize ```ddLocale``` after loading. Normally, you'll probably load your settings first, which store the user's language choice. You can also use your browser's local date/time settings to specify ```ddLocale```. By default, ```ddLocale``` is set to "en", regardless of whether that translation exists.
@@ -56,10 +59,24 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 		},
 		failed: function (err) { // something went wrong
 		},
+		toStringOptions: {
+			eur: {
+				style: "currency",
+				currency: "EUR",
+				minimumFractionDigits: 1,
+				maximumFractionDigits: 2
+			},
+			shortDate: {
+				year: "numeric",
+				month: "short",
+				day: "numeric",
+			}
+		}
 		log: false, // optional, default true
 		nocache: false // if true language files will be loaded using timestamps
 	});
 ```
+
 
 ## Properties
 To change the language you may use ```ddLocale.set(...)``` which is just an alternative to ```.init(...)```.
@@ -100,6 +117,10 @@ The ```ready()``` function will be called each time a new language is set and lo
 ### success
 If other scripts or libraries use ```ddLocale``` you can start their initialisation from the ```success()``` function. ```success()``` will only be called once per (page) load.
 
+### toStringOptions
+Your set of existing options for use with ```toLocaleString()``` which allows dates and numeric values ​​to be represented in locale format.
+
+
 ## JSON-language files
 Language files are json files. Make sure the ```culture``` matches the JSON language file name, for example ```nl-BE.json``` or ```en.json```. Please note the following rules:
 - All language files should have the same ```keys```.
@@ -118,6 +139,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 	}
 ```
 
+
 ## Basic usage
 You can put ddLocal to work via scripting. Just pass the ```key``` to ```ddLocale.t()``` translation function:
 ```
@@ -129,6 +151,8 @@ Or use the extended ```String.t()``` function:
 	let key = "tool name";
 	myTranslation = key.t();
 ```
+
+
 ## Placeholders
 If you are calling a ```key``` with a ```value``` that contains placeholders, you must fill them in. Pass numbered placeholders, such as ```{0}``` and ```{1}```, as comma-separated attributes:
 ```
@@ -145,8 +169,23 @@ The JSON format also alow you to you names instead of numbers:
 ```
 	let myTranslation = ddLocale.t( "hello", {"name":"Master", "lastname":"Mek"} );
 ```
+
+
 ## Numbers and dates
-To localize numbers and dates you can pass ```ddLocale.culture``` to the standard ```toLocaleString``` and ```toLocaleDateString```.
+To localize numbers and dates you can pass ```ddLocale.culture``` to the standard ```toLocaleString``` and/or ```toLocaleDateString```.
+```
+	let dateString = new Date().toLocalString(ddLocale.culture, {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+	});
+```
+To make things a bit easier, you can set your options in ```toStringOptions``` and then use the extended functions ```number.t()``` and ```date.t()``` with the option name you want to use.
+```
+	let dateString = new Date().t('shortDate');
+	let myNumber = (12345.678).t('eur');
+```
+
 
 ## Inline
 
