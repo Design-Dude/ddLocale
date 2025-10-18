@@ -59,15 +59,15 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 		},
 		failed: function (err) { // something went wrong
 		},
-		toStringOptions: {
-			eur: {
-				style: "currency",
+		toStringOptions: { // your collection of option for use with toLocaleString
+			eur: { // name your options
+				style: "currency", // known options for number translations
 				currency: "EUR",
 				minimumFractionDigits: 1,
 				maximumFractionDigits: 2
 			},
 			shortDate: {
-				year: "numeric",
+				year: "numeric", // or known options for date translations
 				month: "short",
 				day: "numeric",
 			}
