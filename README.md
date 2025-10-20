@@ -142,7 +142,8 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 		"exit": {
 			"goodbye": "A presto {fullname}."
 		},
-  		"Cancel": ""
+  		"Cancel": "",
+		"Bitcoins": "I have {0} bitcoins worth {1}."
 	}
 ```
 
