@@ -110,21 +110,14 @@ The optional ```replacement``` character is used as a filler for non-found place
 
 ### menu
 **domId**
-
-# ------
-# NOTICE: fdsaf
-# ------
-if 1:
-  # fdsaf
-  
 ```ddLocale``` only needs a ```DOM element``` with an ```id``` to place a button and a menu in.
-#### button
+**button**
 ```button``` determines the button text:
 - ```"long"``` will place ```cultures[].title``` inside the button.
 - ```"short"``` will place the property ```ddLocale.language``` inside the button.
 - An empty string ```""``` will leave button empty.
 - Any other string is considered a ```key``` to be translated.
-#### menu
+**menu**
 Without the ```menu``` option, the button cycles through the available languages. With the ```menu``` option selected, the button opens a popup menu with all available languages ​​from ```cultures```. The value of ```menu``` is used as the className to style the popup menu.
 
 ### ready
