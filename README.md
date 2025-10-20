@@ -1,6 +1,16 @@
 # ddLocale
-Very lightweight and easy to use JavaScript library for multilingual web apps and sites. Supports both script and inline translations for text, numbers, and dates from nestable JSON sources. Includes functionality for a fully customizable language menu.
+```ddLocale``` is a fairly lightweight and pretty easy to use JavaScript library for multilingual web apps and sites. Supports both script and inline translations for text, numbers, and dates from nestable JSON sources. Includes functionality for a fully customizable language menu.
 
+## Features
+
+- [x] Extends the Javascript ```String``` and ```Date``` functionality using predefined option settings.
+- [x] Supports on the fly translations without the need page loads, even for static elements.
+- [x] Support for RTL languages.
+- [x] Nested language files for easy maintanance.
+- [x] Plural and gender support.
+- [x] Option to join compound strings
+- [x] Multiple syntax options, such as attributes, arrays, or json objects.
+- [x] Fully functional language menu with behavior settings and styling options.
 
 ## Dependencies
 
