@@ -200,7 +200,7 @@ Finally, you can fill placeholders with dates and numbers, but you can only do t
 	let bitcoins21 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
 	let bitcoins2 = "bitcoins".t([1760620872050, 2.56, 'bitcoins', (2.56*95339.54)], ['d|shortDate', 'n', 's', 'n|eur']);
 ```
-
+Dates can be passed as a ```Date object``` or as a ```timestamp```.
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the option ```name``` from ```toStringOptions```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the option ```name``` from ```toStringOptions```.
 - ```String``` binders start with a ```s```, ```str``` or ```string```.
