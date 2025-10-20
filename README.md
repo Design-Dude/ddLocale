@@ -92,12 +92,12 @@ To change the language you may use ```ddLocale.set(...)``` which is just an alte
 
 ### cultures
 Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object has a ```culture```, ```title``` and optional ```direction```.
-#### culture
-This is a standard country or language code like ```"nl-NL"``` or ```"en"```. Make sure that ```culture``` matches the corresponding JSON language file name, for example ```nl-NL```.json or ```en```.json.
-#### title
-The name of language in it's own language for use in the drop down language menu.
-#### direction
-Optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
+
+**culture:** this is a standard country or language code like ```"nl-NL"``` or ```"en"```. Make sure that ```culture``` matches the corresponding JSON language file name, for example ```nl-NL```.json or ```en```.json.
+
+**title:** the name of language in it's own language for use in the drop down language menu.
+
+**direction:** optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
 
 ### path
 If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Just leave out ```./``` and ```/```.
@@ -111,15 +111,12 @@ The optional ```replacement``` character is used as a filler for non-found place
 ### menu
 **domId:** ```ddLocale``` only needs a ```DOM element``` with an ```id``` to place a button and a menu in.
 
-**test:**
-> #### button
-> ```button``` determines the button text:
-> - ```"long"``` will place ```cultures[].title``` inside the button.
-> - ```"short"``` will place the property ```ddLocale.language``` inside the button.
-> - An empty string ```""``` will leave button empty.
-> - Any other string is considered a ```key``` to be translated.
-> #### menu
-> Without the ```menu``` option, the button cycles through the available languages. With the ```menu``` option selected, the button opens a popup menu with all available languages ​​from ```cultures```. The value of ```menu``` is used as the className to style the popup menu.
+**button:** ```button``` determines the button text:
+- ```"long"``` will place ```cultures[].title``` inside the button.
+- ```"short"``` will place the property ```ddLocale.language``` inside the button.
+- An empty string ```""``` will leave button empty.
+- Any other string is considered a ```key``` to be translated.
+**menu:** without the ```menu``` option, the button cycles through the available languages. With the ```menu``` option selected, the button opens a popup menu with all available languages ​​from ```cultures```. The value of ```menu``` is used as the className to style the popup menu.
 
 ### ready
 The ```ready()``` function will be called each time a new language is set and loaded. Use this function to save user settings with the new language for example.
