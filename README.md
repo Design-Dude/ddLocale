@@ -132,7 +132,7 @@ Your set of existing options for use with ```toLocaleString()``` which allows da
 Language files are json files. Make sure the ```culture``` matches the JSON language file name, for example ```nl-BE.json``` or ```en.json```. Please note the following rules:
 - All language files should have the same ```keys```.
 - ```keys``` are case sensitive.
-- If a ```value``` is an empty string ```ddLocale``` will just return the ```key``` as the translated result.
+- non-existing ```keys```, or ```keys``` without ```value``` will be returned unaltered.
 - You can use nested ```keys```.
 - You can also use placeholders as numbers ```{0}``` (Array-style) or as ```{names}``` (JSON-style).
 ```
