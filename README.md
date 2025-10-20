@@ -172,14 +172,17 @@ This wil return ```"A presto __ __ __."``` because the values for the placeholde
 	let byArray = ddLocale.t( "exit.goodbye", ["Mek", "van’t", "Hoff"] );
 	let byObject = ddLocale.t("exit.goodbye", {"0":"Mek", "1":"van’t", "2":"Hoff"} );
 ```
-You may use ```{names}``` instead of numbers ```{0}``` as placeholders when using the object notation.
+You may use ```{names}``` instead of numbers ```{0}``` as placeholders when using the object notation. Fill empty values for placeholders with an empty string, like ```middleName``` in the second example below. Multiple spaces are reduced to one.
 ```
 	let myName = "my name is " + "fullname".t( {"firstName":"Mek", "middleName":"van’t", "lastName":"Hoff"} );
+	let myName = "my name is " + ddLocale.t("fullname", {"firstName":"Mek", "middleName":"", "lastName":"Hoff"} );
 ```
 The JSON format also alow you to you names instead of numbers:
 
 ```
 	let myName = ddLocale.t( "fullname", {"name":"Master", "lastname":"Mek"} );
+	let myRealName = "fullname".t(  {"name":"Master", "lastname":"Mek"} );
+
 ```
 
 
