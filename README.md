@@ -137,8 +137,10 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 	{
 		"tool name": "ddLocale",
 		"hello": "Hello {name} {lastname}.",
+		"hi": "Hi {fullname}.",
+		"fullname": "{firstName}{middleName}{lastName}",
 		"exit": {
-			"goodbye": "A presto {0} {1}."
+			"goodbye": "A presto {fullname}."
 		},
   		"Cancel": ""
 	}
@@ -157,7 +159,7 @@ Or use the extended ```String.t()``` function:
 	let key = "tool name";
 	myTranslation = key.t();
 ```
-
+ 
 
 ## Placeholders
 
@@ -179,6 +181,7 @@ The JSON format also alow you to you names instead of numbers:
 
 
 ## Numbers and dates
+
 To localize numbers and dates you can pass ```ddLocale.culture``` to the standard ```toLocaleString``` and/or ```toLocaleDateString```.
 ```
 	let dateString = new Date().toLocaleString(ddLocale.culture, {
@@ -195,6 +198,7 @@ To make things a bit easier, you can set your options in ```toStringOptions``` a
 
 
 ## Inline
+
 Static elements can be translatable too. Just place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
 ```
 	<div id="container">
@@ -209,6 +213,7 @@ If the inline key has placeholders the corrresponding values must be present in 
 ```
 
 ### Dates and numbers
+
 Dates and numbers can also be static, but only if any options are stored in ```toStringOptions```.
 
 Numbers...
@@ -225,6 +230,7 @@ For dates, the static representation must be a timestamp ```new Date().getTime()
 ```
 
 ## Translation menu
+
 To use the ```ddLocale``` menu you will need a placeholder in your HTML document.
 ```
 	<div id="language"></div>
@@ -324,6 +330,7 @@ body[direction=rtl] #language-menu-container.left {
 ```
 
 ## Whishlist
+
 - [ ] Active placeholder expressions in static inline attributes...
 
 
