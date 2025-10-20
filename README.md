@@ -3,7 +3,7 @@
 
 ## Features
 
-- [X] Extends the Javascript ```String``` and ```Date``` functionality using predefined option settings.
+- [x] Extends the Javascript ```String``` and ```Date``` functionality using predefined option settings.
 - [x] Supports on the fly translations without the need page loads, even for static elements.
 - [x] Support for RTL languages.
 - [x] Nested language files for easy maintanance.
@@ -11,12 +11,7 @@
 - [x] Option to join compound strings
 - [x] Multiple syntax options, such as attributes, arrays, or json objects.
 - [x] Fully functional language menu with behavior settings and styling options.
-
-## Dependencies
-
-ddLocale is a completely independent JavaScript library.
-
-The plugin was created with Sketch Plugin Manager, so if you are planning to use the source code you'll probably need [SKPM](https://github.com/skpm/skpm) too. Together with [sketch-module-web-view](https://github.com/skpm/sketch-module-web-view/tree/master/docs) as a bridge between the plugin and the overlay for user input.
+- [x] Just a simple library without dependencies.
 
 
 ## Installation
