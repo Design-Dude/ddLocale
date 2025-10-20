@@ -170,24 +170,13 @@ This wil return ```"A presto __ __ __."``` because the values for the placeholde
 ```
 	let byAttributes = ddLocale.t( "exit.goodbye", "Mek", "van’t", "Hoff" );
 	let byArray = ddLocale.t( "exit.goodbye", ["Mek", "van’t", "Hoff"] );
-	let byObject = ddLocale.t("exit.goodbye", {"0":"Mek", "1":"van’t", "2":"Hoff"} );
+	let byObject = ddLocale.t("exit.goodbye", {0:"Mek", 1:"van’t", 2:"Hoff"} );
 ```
 You may use ```{names}``` instead of numbers ```{0}``` as placeholders when using the object notation. Fill empty values for placeholders with an empty string, like ```middleName``` in the second example below. Multiple spaces are reduced to one.
 ```
 	let myName = "my name is " + "fullname".t( {"firstName":"Mek", "middleName":"van’t", "lastName":"Hoff"} );
-	let myName = "my name is " + ddLocale.t("fullname", {"firstName":"Mek", "middleName":"", "lastName":"Hoff"} );
+	let myName = "my name is " + ddLocale.t("fullname", {firstName:"Mek", middleName:"", lastName:"Hoff"} );
 ```
-The JSON format also alow you to you names instead of numbers:
-
-```
-	let myName = ddLocale.t( "fullname", {"name":"Master", "lastname":"Mek"} );
-	let myRealName = "fullname".t(  {"name":"Master", "lastname":"Mek"} );
-
-```
-
-
-## Numbers and dates
-
 To localize numbers and dates you can pass ```ddLocale.culture``` to the standard ```toLocaleString``` and/or ```toLocaleDateString```.
 ```
 	let dateString = new Date().toLocaleString(ddLocale.culture, {
@@ -196,7 +185,7 @@ To localize numbers and dates you can pass ```ddLocale.culture``` to the standar
 		day: "numeric",
 	});
 ```
-To make things a bit easier, you can set your options in ```toStringOptions``` and then use the extended functions ```number.t()``` and ```date.t()``` with the option name you want to use.
+To make things a bit easier, you can set your options in ```toStringOptions``` (see ```Initialisation``` above) and then use the extended functions ```Number.t()``` and ```Date.t()``` with the option name you want to use.
 ```
 	let dateString = new Date().t('shortDate');
 	let currency = (12345.678).t('eur');
