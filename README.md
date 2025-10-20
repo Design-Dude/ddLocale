@@ -110,6 +110,7 @@ The optional ```replacement``` character is used as a filler for non-found place
 
 ### menu
 **domId:** ```ddLocale``` only needs a ```DOM element``` with an ```id``` to place a button and a menu in.
+
 **test:**
 > #### button
 > ```button``` determines the button text:
