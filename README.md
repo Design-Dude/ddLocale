@@ -109,7 +109,7 @@ If your JSON-language files are not in a ```./lang/``` folder you can specify th
 The optional ```replacement``` character is used as a filler for non-found placeholder expressions.
 
 ### menu
-#### domId
+#domId#
 ```ddLocale``` only needs a ```DOM element``` with an ```id``` to place a button and a menu in.
 #### button
 ```button``` determines the button text:
