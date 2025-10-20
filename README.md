@@ -205,7 +205,7 @@ Dates can be passed as a ```Date object``` or as a ```timestamp```.
 - ```String``` binders start with a ```s```, ```str``` or ```string```.
 
 
-Finally PLURAL INFO...
+## Finally PLURAL INFO...
 ```
 	plural example with bitcoin from above
 ```
