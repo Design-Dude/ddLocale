@@ -3,16 +3,14 @@
 
 ## Features
 
-- [x] Extends the Javascript ```String``` and ```Date``` functionality using predefined option settings.
-- [x] Supports on the fly translations without the need page loads, even for static elements.
-- [x] Support for RTL languages.
+- [x] Just a simple yet comprehensive library with no dependencies.
 - [x] Nested language files for easy maintanance.
-- [x] Plural and gender support.
-- [x] Option to join compound strings
-- [x] Multiple syntax options, such as attributes, arrays, or json objects.
+- [x] Multiple syntax options, such as attributes, arrays, or objects.
+- [x] Supports on the fly translations without the need page loads, even for static elements.
+- [x] Support for Right To Left (RTL) languages.
+- [x] Plural support with rules defined in the JSON language files.
+- [x] Extends the Javascript ```String``` and ```Date``` functionality using predefined option settings.
 - [x] Fully functional language menu with behavior settings and styling options.
-- [x] Just a simple library without dependencies.
-
 
 ## Installation
 
