@@ -44,7 +44,7 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 		language: "", // optional if culture is used, default "en" (lowercase)
 		country: "", // optional, default "" (uppercase)
 		culture: "nl-NL", // optional, overrules language and country if set
-		replacement: "?", // optional, default __
+		replacement: "__", // optional, default __
 		menu: {
 			domId: "language", // id of dom-node where language menu will be triggered
 			button: "", // "long" title, "short" language code or some translation "key"
@@ -138,22 +138,21 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 - You can also use placeholders as numbers ```{0}``` (Array-style) or as ```{names}``` (JSON-style).
 ```
 	{
-		"tool name": "ddLocale",
+		"bitcoins": "On {0} I had {1} {2} worth {3}.",
+		"exit": {
+			"goodbye": "A presto {0} {1} {2}."
+		},
+		"fullname": "{firstName} {middleName} {lastName}",
 		"hello": "Hello {name} {lastname}.",
 		"hi": "Hi {fullname}.",
-		"fullname": "{firstName}{middleName}{lastName}",
-		"exit": {
-			"goodbye": "A presto {fullname}."
-		},
-  		"Cancel": "",
-		"Bitcoins": "I have {0} bitcoins worth {1}."
+		"tool name": "ddLocale"
 	}
 ```
 
 
 ## Basic usage
 
-You can put ddLocal to work via scripting. Just pass the ```key``` to ```ddLocale.t()``` translation function:
+You can put ddLocal to work via scripting. The following example make use of the above JSON. Just pass the ```key``` to ```ddLocale.t()``` translation function:
 ```
 	let myTranslation = ddLocale.t("tool name");
 ```
@@ -163,24 +162,24 @@ Or use the extended ```String.t()``` function:
 	let key = "tool name";
 	myTranslation = key.t();
 ```
- 
-
-## Placeholders
-
-If you are calling a ```key``` with a ```value``` that contains placeholders, you must fill them in. Pass numbered placeholders, such as ```{0}``` and ```{1}```, as comma-separated attributes:
+Nested values ​​can be accessed by using a period between the keys. 
 ```
-	let myTranslation = ddLocale.t( "exit.goodbye", "Master", "Mek" );
-	myTranslation = "exit.goodbye".t( "Master", "Mek" );
+	let bye = "exit.goodbye".t();
 ```
-Or use the JSON format like this:
+This wil return ```"A presto __ __ __."``` because the values for the placeholders are missing. You can pass values for placeholders in 3 different ways (per ```attribute``` or ```array``` only works with sequential numbered placeholders, such as ```{0}```):
 ```
-	let myTranslation = ddLocale.t( "exit.goodbye", {"0":"Master", "1":"Mek"} );
-	myTranslation = "exit.goodbye".t( {"1":"Master", "0":"Mek"} );
+	let byAttributes = ddLocale.t( "exit.goodbye", "Mek", "van’t", "Hoff" );
+	let byArray = ddLocale.t( "exit.goodbye", ["Mek", "van’t", "Hoff"] );
+	let byObject = ddLocale.t("exit.goodbye", {"0":"Mek", "1":"van’t", "2":"Hoff"} );
+```
+You may use ```{names}``` instead of numbers ```{0}``` as placeholders when using the object notation.
+```
+	let myName = "my name is " + "fullname".t( {"firstName":"Mek", "middleName":"van’t", "lastName":"Hoff"} );
 ```
 The JSON format also alow you to you names instead of numbers:
 
 ```
-	let myTranslation = ddLocale.t( "hello", {"name":"Master", "lastname":"Mek"} );
+	let myName = ddLocale.t( "fullname", {"name":"Master", "lastname":"Mek"} );
 ```
 
 
