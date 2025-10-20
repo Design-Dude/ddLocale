@@ -198,7 +198,7 @@ Or you can use ```ddLocale``` to pass a date or a number for localisation.
 Finally, you can fill placeholders with dates and numbers, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders.
 ```
 	let bitcoins21 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
-	let bitcoins2 = "bitcoins".t([1760620872050, 2.56, 'bitcoins', (2.56*95339.54)], ['d|shortDate', 'n', 's', 'n|eur']);
+	let bitcoins2 = "bitcoins".t([new Date(), 2.56, 'bitcoins', (2.56*95339.54)], ['d|shortDate', 'n', 's', 'n|eur']);
 ```
 Dates can be passed as a ```Date object``` or as a ```timestamp```.
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the option ```name``` from ```toStringOptions```.
