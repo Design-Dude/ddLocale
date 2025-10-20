@@ -6,10 +6,11 @@
 - [x] Just a simple yet comprehensive library with no dependencies.
 - [x] Nested language files for easy maintanance.
 - [x] Multiple syntax options, such as attributes, arrays, or objects.
-- [x] Supports on the fly translations without the need page loads, even for static elements.
+- [x] Extensive options for inline translation.
+- [x] Supports language switching of static elements without reloading the page.
 - [x] Support for Right To Left (RTL) languages.
-- [x] Plural support with rules defined in the JSON language files.
-- [x] Extends the Javascript ```String``` and ```Date``` functionality using predefined option settings.
+- [ ] Plural support with rules defined in the JSON language files.
+- [x] Extends the Javascript ```String``` and ```Date``` functionality.
 - [x] Fully functional language menu with behavior settings and styling options.
 
 ## Installation
