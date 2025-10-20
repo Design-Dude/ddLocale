@@ -185,12 +185,25 @@ To localize numbers and dates you can pass ```ddLocale.culture``` to the standar
 		day: "numeric",
 	});
 ```
-To make things a bit easier, you can set your options in ```toStringOptions``` (see ```Initialisation``` above) and then use the extended functions ```Number.t()``` and ```Date.t()``` with the option name you want to use.
+To make things a bit easier and shorter, you can store your options in ```toStringOptions``` (see ```Initialisation``` above) and then use the extended functions ```Number.t()``` and ```Date.t()``` with the option ```name``` you want to use.
 ```
 	let dateString = new Date().t('shortDate');
 	let currency = (12345.678).t('eur');
 ```
+Or you can use ```ddLocale``` to pass a date or a number for localisation.
+```
+	let dateString = ddLocale.t(new Date(), 'shortDate');
+	let currency = ddLocale.t(12345.678, 'eur');
+```
+Finally, you can fill placeholders with dates and numbers, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders.
+```
+	let bitcoins21 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
+	let bitcoins2 = "bitcoins".t([1760620872050, 2.56, 'bitcoins', (2.56*95339.54)], ['d|shortDate', 'n', 's', 'n|eur']);
+```
 
+> ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the option ```name``` from ```toStringOptions```.
+> ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the option ```name``` from ```toStringOptions```.
+> ```String``` binders start with a ```s```, ```str``` or ```string```.
 
 ## Inline
 
