@@ -3,7 +3,7 @@
 
 ## Features
 
-- [x] Extends the Javascript ```String``` and ```Date``` functionality using predefined option settings.
+- [X] Extends the Javascript ```String``` and ```Date``` functionality using predefined option settings.
 - [x] Supports on the fly translations without the need page loads, even for static elements.
 - [x] Support for RTL languages.
 - [x] Nested language files for easy maintanance.
