@@ -226,7 +226,7 @@ Dates can be passed as a ```Date object``` or as a ```timestamp```.
 ## Inline usage
 
 Static elements can be translatable too.
-> Unlike use via scripting, the inline solution **IS** recursive, as long as placeholders are defined!
+> Unlike use via scripting, the inline solution **IS** recursive, as long as necessary placeholders are defined!
 
 Place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
 ```
