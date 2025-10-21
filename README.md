@@ -151,7 +151,9 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 
 ## Basic usage
 
-You can put ddLocal to work via scripting. The following example make use of the above JSON. Just pass the ```key``` to ```ddLocale.t()``` translation function:
+You can put ```ddLocal``` to work via scripting. **Remember:** ```ddLocal``` is not recursive. The name of a placeholder will **not** be translated if a key with the same name exists. First, create the translation for the desired placeholder and feed that to the placeholder.
+
+The following example make use of the above JSON. Just pass the ```key``` to ```ddLocale.t()``` translation function. 
 ```
 	let myTranslation = ddLocale.t("tool name");
 ```
