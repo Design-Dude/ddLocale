@@ -135,6 +135,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 - non-existing ```keys```, or ```keys``` without ```value``` will be returned unaltered.
 - You can use nested ```keys```.
 - You can also use placeholders as numbers ```{0}``` (Array-style) or as ```{names}``` (JSON-style).
+- If you plan to use the ```inline``` translation feature, it is best practice to use **only lowercase** letters for placeholder ```names``` because the standard ```data-*``` attributes do not support uppercase letters.
 ```
 	{
 		"bitcoins": "On {0} I had {1} {2} worth {3}.",
