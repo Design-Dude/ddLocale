@@ -149,9 +149,10 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 ```
 
 
-## Basic usage
+## Scripting usage
 
-You can put ```ddLocal``` to work via scripting. **Remember:** ```ddLocal``` is not recursive. The name of a placeholder will **not** be translated if a key with the same name exists. First, create the translation for the desired placeholder and feed that to the placeholder.
+You can put ```ddLocal``` to work via scripting.
+> **Remember:** ```ddLocal``` is not recursive. The name of a placeholder will **NOT** be translated if a key with the same name exists. First, create the translation for the desired placeholder and feed that to the placeholder.
 
 The following example make use of the JSON above. Just pass the ```key``` to ```ddLocale.t()``` translation function. 
 ```
@@ -168,6 +169,7 @@ Nested values ​​can be accessed by using a period between the keys.
 	let bye = "exit.goodbye".t();
 ```
 This wil return ```"A presto __ __ __."``` because the values for the placeholders are missing. You can pass values for placeholders in 3 different ways (per ```attribute``` or ```array``` only works with sequential numbered placeholders, such as ```{0}```):
+> **Note:** if you plan to use the ```inline``` translation feature, it is best practice to use only lowercase letters for placeholder ```names```!
 ```
 	let byAttributes = ddLocale.t( "exit.goodbye", "Benicio", "del", "Toro" );
 	let byArray = ddLocale.t( "exit.goodbye", ["Benicio", "del", "Toro"] );
@@ -220,21 +222,23 @@ Dates can be passed as a ```Date object``` or as a ```timestamp```.
 	plural example with bitcoin from above
 ```
 
-## Inline
+## Inline usage
 
-Static elements can be translatable too. Just place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
-```
-	<div id="container">
-		<h1 t="tool name"></h1>
-	</div>
-```
-If the inline key has placeholders the corrresponding values must be present in data-t+* attributes, where * is a corresponding key.
-```
-	<div id="container">
-		<h1 t="hello" data-t+name="Master" data-t+lastname="Mek"></h1>
-	</div>
-```
+Static elements can be translatable too.
+> Unlike use via scripting, the inline solution **IS** recursive, as long as placeholders are defined.
 
+Place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
+```
+	<h1 t="tool name"></h1>
+```
+If the inline ```key``` has ```placeholders``` the corrresponding values must be present in ```data-t+*``` attributes, where ```*``` is a corresponding ```placeholders```.
+```
+	<h1 t="hello" data-t+name="Master" data-t+lastname="Mek"></h1>
+```
+If the inline ```placeholders``` are themselves a ```key```, you must specify an additional attribute by adding the placeholder ```names``` in the names attribute with a plus sign.
+```
+	<h1 t="hi" data-t+fullname="fullname" data-t+fullname+="" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></h1>
+```
 ### Dates and numbers
 
 Dates and numbers can also be static, but only if any options are stored in ```toStringOptions```.
