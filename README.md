@@ -8,9 +8,9 @@
 - [x] Multiple syntax options, such as attributes, arrays, or objects.
 - [x] Extensive options for inline translation.
 - [x] Supports language switching of static elements without reloading the page.
-- [x] Support for Right To Left (RTL) languages.
-- [ ] Plural support with rules defined in the JSON language files.
 - [x] Extends the Javascript ```String``` and ```Date``` functionality.
+- [x] Support for Right To Left (RTL) languages.
+- [ ] Support for cardinal and ordinal numbers where supporting rules can be defined in external script and in the JSON language files.
 - [x] Fully functional language menu with behavior settings and styling options.
 
 ## Installation
