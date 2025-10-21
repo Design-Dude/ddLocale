@@ -135,7 +135,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 - non-existing ```keys```, or ```keys``` without ```value``` will be returned unaltered.
 - You can use nested ```keys```.
 - You can also use placeholders as numbers ```{0}``` (Array-style) or as ```{names}``` (JSON-style).
-- If you plan to use the inline translation feature, it is important to use only lowercase letters for placeholder names, because the standard data-* attributes used for inline data storage do not support uppercase letters.
+- If you plan to use the ```inline``` translation feature, it is important to use only **lowercase** letters for placeholder ```names```, because the standard ```data-*``` attributes used for inline data storage do not support uppercase letters.
 ```
 	{
 		"bitcoins": "On {0} I had {1} {2} worth {3}.",
@@ -176,7 +176,7 @@ This wil return ```"A presto __ __ __."``` because the values for the placeholde
 	let byObject = ddLocale.t("exit.goodbye", {0:"Benicio", 1:"del", 2:"Toro"} );
 ```
 You may use ```{names}``` instead of numbers ```{0}``` as placeholders when using the object notation. Fill empty values for placeholders with an empty string, like ```middlename``` in the second example below. Multiple spaces are reduced to one.
-> **Note:** If you plan to use the inline translation feature, it is important to use only lowercase letters for placeholder names, because the standard data-* attributes used for inline data storage do not support uppercase letters!
+> **Note:** If you plan to use the ```inline``` translation feature, it is important to use only **lowercase** letters for placeholder ```names```, because the standard ```data-*``` attributes used for inline data storage do not support uppercase letters!
 ```
 	let myName = "my name is " + "fullname".t( {"firstname":"Benicio", "middlename":"del", "lastname":"Toro"} );
 	let myName = "my name is " + ddLocale.t("fullname", {firstname:"Benicio", middlename:"", lastname:"Toro, del"} );
@@ -233,6 +233,7 @@ Place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the
 	<h1 t="tool name"></h1>
 ```
 If the inline ```key``` has ```placeholders``` the corrresponding values must be present in ```data-t+*``` attributes, where ```*``` is a corresponding ```placeholders```.
+> It is important to use only **lowercase** letters for placeholder ```names```, because the standard ```data-*``` attributes used for inline data storage do not support uppercase letters!
 ```
 	<h1 t="hello" data-t+name="Master" data-t+lastname="Mek"></h1>
 ```
@@ -240,6 +241,8 @@ If the inline ```placeholders``` are themselves a ```key```, you must specify an
 ```
 	<h1 t="hi" data-t+fullname="fullname" data-t+fullname+="" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></h1>
 ```
+
+
 ### Dates and numbers
 
 Dates and numbers can also be static, but only if any options are stored in ```toStringOptions```.
