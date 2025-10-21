@@ -239,9 +239,12 @@ If the inline ```key``` has ```placeholders``` the corrresponding values must be
 ```
 If the inline ```placeholders``` are themselves a ```key```, you must specify an additional attribute by adding the placeholder ```names``` in the names attribute with a plus sign.
 ```
-	<h1 t="hi" data-t+fullname="fullname" data-t+fullname+="" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></h1>
+	<h1 t="hi" data-t+fullname="fullname" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></h1>
 ```
-
+Of course this also works with numberd placeholders.
+```
+	<h1 t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></h1>
+```
 
 ### Dates and numbers
 
