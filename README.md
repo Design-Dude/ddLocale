@@ -241,12 +241,12 @@ If the inline ```placeholders``` are themselves a ```key```, you must specify an
 ```
 Of course this also works with numberd placeholders.
 ```
-	<h1 t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></h1>
+	<span t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></span>
 ```
 Dates must be passed as ```timestamps```. Because timestamps are just numbers, you need to tell ```ddLocale``` what kind of number it is with ```binders```. This is done with an additional attribute with the same attribute ```name```, appended with an additional ```+``` sign.
 ```
-	<div id="test" t="1760565600000" data-t+="date"></div>
-	<div id="test" t="176056.45" data-t+="num|eur"></div>
+	<div t="1760565600000" data-t+="date"></div>
+	<div t="176056.45" data-t+="num|eur"></div>
 ```
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
