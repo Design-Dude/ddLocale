@@ -194,7 +194,7 @@ Or you can use ```ddLocale``` to pass a date or a number for localisation.
 	let dateString = ddLocale.t(new Date(), 'shortDate');
 	let currency = ddLocale.t(12345.678, 'eur');
 ```
-Passing ```timestamps``` is allowed, but without ```date options``` it will be treated as a ```number```.
+Passing ```timestamps``` is allowed, but without specific ```date options``` it will be treated as a ```number```.
 ```
 	let dateString1 = ddLocale.t(1760565600000, 'shortDate');
 	let dateString2 = (1760565600000).t('shortDate');
