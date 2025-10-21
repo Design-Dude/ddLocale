@@ -205,7 +205,7 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 	let dateString2 = (1760565600000).t('shortDate');
 ```
 
-You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders. Dates can be passed as a ```Date object``` or as a ```timestamp```.
+You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders per placeholder. Dates can be passed as a ```Date object``` or as a ```timestamp```.
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
 ```
