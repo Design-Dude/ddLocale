@@ -205,17 +205,15 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 	let dateString2 = (1760565600000).t('shortDate');
 ```
 
-
-
 You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders.
 ```
 	let bitcoins1 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
 	let bitcoins2 = "bitcoins".t([new Date(), 2.56, 'bitcoins', (2.56*95339.54)], ['date|shortDate', 'number', 'string', 'num|eur']);
 ```
 Dates can be passed as a ```Date object``` or as a ```timestamp```.
-- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the option ```name``` from ```toStringOptions```.
-- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the option ```name``` from ```toStringOptions```.
-- ```String``` binders start with a ```s```, ```str``` or ```string```.
+- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
+- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
+// - ```String``` binders start with a ```s```, ```str``` or ```string```.
 
 
 ## Finally PLURAL INFO...
@@ -237,7 +235,7 @@ If the inline ```key``` has ```placeholders``` the corrresponding values must be
 ```
 	<h1 t="hello" data-t+name="Master" data-t+lastname="Mek"></h1>
 ```
-If the inline ```placeholders``` are themselves a ```key```, you must specify an additional attribute by adding the placeholder ```names``` in the names attribute with a plus sign.
+If the inline ```placeholders``` are themselves a ```key```, you must specify an additional attribute by adding the placeholder ```names``` in the names attribute with a ```+``` sign.
 ```
 	<h1 t="hi" data-t+fullname="fullname" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></h1>
 ```
@@ -245,6 +243,13 @@ Of course this also works with numberd placeholders.
 ```
 	<h1 t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></h1>
 ```
+Dates must be passed as ```timestamps```. Because timestamps are just numbers, you need to tell ```ddLocale``` what kind of number it is with ```binders```. This is done with an additional attribute with the same attribute ```name```, appended with an additional ```+``` sign.
+```
+	<div id="test" t="1760565600000" data-t+="date"></div>
+	<div id="test" t="176056.45" data-t+="num|eur"></div>
+```
+- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
+- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
 
 ### Dates and numbers
 
