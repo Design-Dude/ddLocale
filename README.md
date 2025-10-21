@@ -135,7 +135,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 - non-existing ```keys```, or ```keys``` without ```value``` will be returned unaltered.
 - You can use nested ```keys```.
 - You can also use placeholders as numbers ```{0}``` (Array-style) or as ```{names}``` (JSON-style).
-- If you plan to use the ```inline``` translation feature, it is best practice to use **only lowercase** letters for placeholder ```names``` because the standard ```data-*``` attributes do not support uppercase letters.
+- If you plan to use the inline translation feature, it is important to use only lowercase letters for placeholder names, because the standard data-* attributes used for inline data storage do not support uppercase letters.
 ```
 	{
 		"bitcoins": "On {0} I had {1} {2} worth {3}.",
@@ -153,7 +153,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 ## Scripting usage
 
 You can put ```ddLocal``` to work via scripting.
-> **Remember:** ```ddLocal``` is not recursive. The name of a placeholder will **NOT** be translated if a key with the same name exists. First, create the translation for the desired placeholder and feed that to the placeholder.
+> **Remember:** ```ddLocal``` is not recursive. The name of a placeholder will **NOT** be translated if a key with the same name exists. First, create the translation for the desired placeholder and feed that to the placeholder!
 
 The following example make use of the JSON above. Just pass the ```key``` to ```ddLocale.t()``` translation function. 
 ```
@@ -176,7 +176,7 @@ This wil return ```"A presto __ __ __."``` because the values for the placeholde
 	let byObject = ddLocale.t("exit.goodbye", {0:"Benicio", 1:"del", 2:"Toro"} );
 ```
 You may use ```{names}``` instead of numbers ```{0}``` as placeholders when using the object notation. Fill empty values for placeholders with an empty string, like ```middlename``` in the second example below. Multiple spaces are reduced to one.
-> **Note:** If you plan to use the ```inline``` translation feature, it is best practice to use **only lowercase** letters for placeholder ```names``` because the standard ```data-*``` attributes do not support uppercase letters.
+> **Note:** If you plan to use the inline translation feature, it is important to use only lowercase letters for placeholder names, because the standard data-* attributes used for inline data storage do not support uppercase letters!
 ```
 	let myName = "my name is " + "fullname".t( {"firstname":"Benicio", "middlename":"del", "lastname":"Toro"} );
 	let myName = "my name is " + ddLocale.t("fullname", {firstname:"Benicio", middlename:"", lastname:"Toro, del"} );
@@ -226,7 +226,7 @@ Dates can be passed as a ```Date object``` or as a ```timestamp```.
 ## Inline usage
 
 Static elements can be translatable too.
-> Unlike use via scripting, the inline solution **IS** recursive, as long as placeholders are defined.
+> Unlike use via scripting, the inline solution **IS** recursive, as long as placeholders are defined!
 
 Place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
 ```
