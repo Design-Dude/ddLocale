@@ -206,13 +206,15 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 ```
 
 You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders.
+
+
+Dates can be passed as a ```Date object``` or as a ```timestamp```.
+- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
+- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
 ```
 	let bitcoins1 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
 	let bitcoins2 = "bitcoins".t([new Date(), 2.56, 'bitcoins', (2.56*95339.54)], ['date|shortDate', 'number', 'string', 'num|eur']);
 ```
-Dates can be passed as a ```Date object``` or as a ```timestamp```.
-- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
-- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
 
 ### TODO!
 - ```String``` binders start with a ```s```, ```str``` or ```string```.
@@ -246,18 +248,18 @@ Of course this also works with numberd placeholders.
 	<span t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></span>
 ```
 Dates must be passed as ```timestamps```. Because timestamps are just numbers, you need to tell ```ddLocale``` what kind of number it is with ```binders```. This is done with an additional attribute with the same attribute ```name```, appended with an additional ```+``` sign.
+- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
+- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
 ```
 	<div t="1760565600000" data-t+="date"></div>
 	<div t="176056.45" data-t+="num|eur"></div>
 ```
-- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
-- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
 Because inline translations are recursive, the result of a placeholder translation cannot be an existing ```key```. To prevent the translation from being incorrectly translated further, you can explicitly pass the placeholder as a string.
+- ```String``` binders start with a ```s```, ```str``` or ```string```.
 ```
 	<div t="bitcoins" data-t+0="1760565600000" data-t+0+="d|shortDate" data-t+1="2.56" data-t+1+="num" data-t+2="bitcoins" data-t+2+="s" data-t+3="244069.222" data-t+3+="n|eur"></div>
 ```
-- ```String``` binders start with a ```s```, ```str``` or ```string```.
-- 
+  
 ### TODO!
 string thingies
 
