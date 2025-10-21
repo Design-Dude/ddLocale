@@ -141,7 +141,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 		"exit": {
 			"goodbye": "A presto {0} {1} {2}."
 		},
-		"fullname": "{firstName} {middleName} {lastName}",
+		"fullname": "{firstname} {middlename} {lastname}",
 		"hello": "Hello {name} {lastname}.",
 		"hi": "Hi {fullname}.",
 		"tool name": "ddLocale"
@@ -169,16 +169,16 @@ Nested values ​​can be accessed by using a period between the keys.
 	let bye = "exit.goodbye".t();
 ```
 This wil return ```"A presto __ __ __."``` because the values for the placeholders are missing. You can pass values for placeholders in 3 different ways (per ```attribute``` or ```array``` only works with sequential numbered placeholders, such as ```{0}```):
-> **Note:** If you plan to use the ```inline``` translation feature, it is best practice to use **only lowercase** letters for placeholder ```names``` because the standard ```data-*``` attributes do not support uppercase letters.
 ```
 	let byAttributes = ddLocale.t( "exit.goodbye", "Benicio", "del", "Toro" );
 	let byArray = ddLocale.t( "exit.goodbye", ["Benicio", "del", "Toro"] );
 	let byObject = ddLocale.t("exit.goodbye", {0:"Benicio", 1:"del", 2:"Toro"} );
 ```
-You may use ```{names}``` instead of numbers ```{0}``` as placeholders when using the object notation. Fill empty values for placeholders with an empty string, like ```middleName``` in the second example below. Multiple spaces are reduced to one.
+You may use ```{names}``` instead of numbers ```{0}``` as placeholders when using the object notation. Fill empty values for placeholders with an empty string, like ```middlename``` in the second example below. Multiple spaces are reduced to one.
+> **Note:** If you plan to use the ```inline``` translation feature, it is best practice to use **only lowercase** letters for placeholder ```names``` because the standard ```data-*``` attributes do not support uppercase letters.
 ```
-	let myName = "my name is " + "fullname".t( {"firstName":"Benicio", "middleName":"del", "lastName":"Toro"} );
-	let myName = "my name is " + ddLocale.t("fullname", {firstName:"Benicio", middleName:"", lastName:"Toro, del"} );
+	let myName = "my name is " + "fullname".t( {"firstname":"Benicio", "middlename":"del", "lastname":"Toro"} );
+	let myName = "my name is " + ddLocale.t("fullname", {firstname:"Benicio", middlename:"", lastname:"Toro, del"} );
 ```
 To localize numbers and dates you can pass ```ddLocale.culture``` to the standard ```toLocaleString``` and/or ```toLocaleDateString```.
 ```
