@@ -189,11 +189,19 @@ To make things a bit easier and shorter, you can store your options in ```toStri
 	let dateString = new Date().t('shortDate');
 	let currency = (12345.678).t('eur');
 ```
-Or you can use ```ddLocale``` to pass a date or a number for localisation.
+Or you can use ```ddLocale``` to pass a date or a number for localisation. 
 ```
 	let dateString = ddLocale.t(new Date(), 'shortDate');
 	let currency = ddLocale.t(12345.678, 'eur');
 ```
+Passing ```timestamps``` is allowed, but without ```date options``` it will be treated as a ```number```.
+```
+	let dateString1 = ddLocale.t(1760565600000, 'shortDate');
+	let dateString2 = (1760565600000).t('shortDate');
+```
+
+
+
 You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders.
 ```
 	let bitcoins1 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
