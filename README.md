@@ -169,7 +169,7 @@ Nested values ​​can be accessed by using a period between the keys.
 	let bye = "exit.goodbye".t();
 ```
 This wil return ```"A presto __ __ __."``` because the values for the placeholders are missing. You can pass values for placeholders in 3 different ways (per ```attribute``` or ```array``` only works with sequential numbered placeholders, such as ```{0}```):
-> **Note:** if you plan to use the ```inline``` translation feature, it is best practice to use only lowercase letters for placeholder ```names```!
+> **Note:** If you plan to use the ```inline``` translation feature, it is best practice to use **only lowercase** letters for placeholder ```names``` because the standard ```data-*``` attributes do not support uppercase letters.
 ```
 	let byAttributes = ddLocale.t( "exit.goodbye", "Benicio", "del", "Toro" );
 	let byArray = ddLocale.t( "exit.goodbye", ["Benicio", "del", "Toro"] );
