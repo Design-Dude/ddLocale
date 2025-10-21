@@ -250,6 +250,11 @@ Dates must be passed as ```timestamps```. Because timestamps are just numbers, y
 ```
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
+Because inline translations are recursive, the result of a placeholder translation cannot be an existing ```key```. To prevent the translation from being incorrectly translated further, you can explicitly pass the placeholder as a string.
+```
+	<div t="bitcoins" data-t+0="1760565600000" data-t+0+="d|shortDate" data-t+1="2.56" data-t+1+="num" data-t+2="bitcoins" data-t+2+="s" data-t+3="244069.222" data-t+3+="n|eur"></div>
+```
+- ```String``` binders start with a ```s```, ```str``` or ```string```. 
 
 ### Dates and numbers
 
