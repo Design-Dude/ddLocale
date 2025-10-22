@@ -26,6 +26,9 @@ You can also use this link for the latest version.
 
 Always initialize ```ddLocale``` after loading. Normally, you'll probably load your settings first, which store the user's language choice. You can also use your browser's local date/time settings to specify ```ddLocale```. By default, ```ddLocale``` is set to "en", regardless of whether that translation exists.
 
+
+This example includes all the option available:
+
 ```
 	ddLocale.init({
 		cultures: [ // all available languages
