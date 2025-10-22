@@ -132,14 +132,14 @@ Your set of existing options for use with ```toLocaleString()``` which allows da
 By default all elements with ```t``` attribute will be translatesd after load. If you don't want that you can set  ```inline: false```.
 
 ### pluralRules
-With ```pluralRules: true```, ```ddLocale``` attempts to add additional rules for cardinal and ordinal numbers. They describe adjustments for plural (```dog```→```dogs```) and numerical values (```1```→```1st```) ​​according to local rules. The ```pluralRules``` are limited to the generally accepted rules of the selected language. The list of exceptions is not always complete or even available. **Feel free to add to the ```pluralRule scripts```!**
+With ```pluralRules: true```, ```ddLocale``` attempts to add additional rules for cardinal and ordinal numbers. They describe adjustments for plural (```dog```→```dogs```) and numerical values (```1```→```1st```) ​​according to local rules. The ```pluralRules``` are limited to the generally accepted rules of the selected language. The list of exceptions is not always complete or even available. **Feel free to add to the pluralRule scripts** in the folder ```languages/pluralRules/```.
 
 
 ```ddLocale``` always attempts to load ```culture```.js. If it's not available, a second attempt is made with ```country```.js. If ```pluralRules``` is not found, it is disabled for the selected language.
 The ```pluralRules``` describe ordinal numbers, like ```1st``` and ```2nd```
 
 
-You can find these files in the folder ```languages/pluralRules/```. Unfortunately, they are far from complete. Current support is limited to:
+Unfortunately, the set of rules is far from complete. Current support is limited to:
 - [X] en (just ordinal for now)
 - [X] nl (just ordinal for now)
 - [X] sp (just ordinal for now)
