@@ -24,7 +24,7 @@ You can also use this link for the latest version.
 
 ## Initialisation
 
-Always initialize ```ddLocale``` after loading. Normally, you'll probably load your settings first, which store the user's language choice. You can also use your browser's local date/time settings to specify ```ddLocale```. By default, ```ddLocale``` is set to "en", regardless of whether that translation exists.
+Always call ```ddLocale.init()``` with the options of your choice. Normally, you'll probably load your settings first, which store the user's language choice. You can also use your browser's local date/time settings to specify ```ddLocale```. By default, ```ddLocale``` is set to "en", regardless of whether that translation exists.  To change the language later on you may use ```ddLocale.set(...)``` which is just an alternative to ```.init(...)```.
 
 
 This example includes all the option available:
@@ -91,8 +91,6 @@ This example includes all the option available:
 
 
 ## Properties
-
-To change the language you may use ```ddLocale.set(...)``` which is just an alternative to ```.init(...)```.
 
 ### cultures
 Define a list of ```cultures``` to let ddLocale know which languages are available. A ```cultures``` object has a ```culture```, ```title``` and optional ```direction```.
