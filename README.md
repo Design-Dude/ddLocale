@@ -24,7 +24,7 @@ You can also use this link for the latest version.
 
 ## Initialisation
 
-Always call ```ddLocale.init()``` with the options of your choice. Normally, you'll probably load your settings first, which store the user's language choice. You can also use your browser's local date/time settings to specify ```ddLocale```. By default, ```ddLocale``` is set to "en", regardless of whether that translation exists.  To change the language later on you may use ```ddLocale.set(...)``` which is just an alternative to ```.init(...)```.
+Always call ```ddLocale.init({})``` with the options of your choice. Normally, you'll probably load your settings first, which store the user's language choice. You can also use your browser's local date/time settings to specify ```ddLocale```. By default, ```ddLocale``` is set to "en", regardless of whether that translation exists.  To change the language later on you may use ```ddLocale.set({})``` which is just an alternative to ```.init(...)```.
 
 
 This example includes all the option available:
