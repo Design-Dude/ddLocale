@@ -10,7 +10,7 @@
 - [x] Supports language switching of static elements without reloading the page.
 - [x] Extends the Javascript ```String``` and ```Date``` functionality.
 - [x] Support for Right To Left (RTL) languages.
-- [ ] Support for cardinal and ordinal numbers where supporting rules can be defined in external script and in the JSON language files.
+- [ ] optional support for cardinal and ordinal numbers where supporting rules can be defined in external script and in the JSON language files.
 - [x] Fully functional language menu with behavior settings and styling options.
 
 ## Installation
@@ -78,7 +78,9 @@ Always initialize ```ddLocale``` after loading. Normally, you'll probably load y
 				month: "short",
 				day: "numeric",
 			}
-		}
+		},
+		inline: false, // optional, default true
+		pluralRules: false, // optional, default false
 		log: false, // optional, default true
 		nocache: false // if true language files will be loaded using timestamps
 	});
@@ -125,6 +127,14 @@ If other scripts or libraries use ```ddLocale``` you can start their initialisat
 
 ### toStringOptions
 Your set of existing options for use with ```toLocaleString()``` which allows dates and numeric values ​​to be represented in locale format.
+
+### inline
+By default all elements with ```t``` attribute will be translatesd after load. If you don't want that you can set  ```inline: false```.
+
+### pluralRules
+With ```pluralRules: true```, ``ddLocale``` attempts to add additional rules for cardinal and ordinal numbers (i.e., adjustments for plural and numerical values ​​according to local rules). You can find these files in the folder ```languages/pluralRules/```. Unfortunately, they are far from complete. Current support is limited to:
+- [-] en
+- [-] nl
 
 
 ## JSON-language files
