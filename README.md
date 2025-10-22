@@ -132,10 +132,20 @@ Your set of existing options for use with ```toLocaleString()``` which allows da
 By default all elements with ```t``` attribute will be translatesd after load. If you don't want that you can set  ```inline: false```.
 
 ### pluralRules
-With ```pluralRules: true```, ``ddLocale``` attempts to add additional rules for cardinal and ordinal numbers (i.e., adjustments for plural and numerical values ​​according to local rules). You can find these files in the folder ```languages/pluralRules/```. Unfortunately, they are far from complete. Current support is limited to:
-- [-] en
-- [-] nl
+With ```pluralRules: true```, ```ddLocale``` attempts to add additional rules for cardinal and ordinal numbers. They describe adjustments for plural (```dog```→```dogs```) and numerical values (```1```→```1st```) ​​according to local rules. The ```pluralRules``` are limited to the generally accepted rules of the selected language. The list of exceptions is not always complete or even available. **Feel free to add to the pluralRules!**
 
+
+```ddLocale``` always attempts to load ```culture```.js. If it's not available, a second attempt is made with ```country```.js. If ```pluralRules``` is not found, it is disabled for the selected language.
+The ```pluralRules``` describe ordinal numbers, like ```1st``` and ```2nd```
+
+
+You can find these files in the folder ```languages/pluralRules/```. Unfortunately, they are far from complete. Current support is limited to:
+- [X] en (just ordinal for now)
+- [X] nl (just ordinal for now)
+- [X] sp (just ordinal for now)
+- [X] sp-CA (just ordinal for now)
+- [X] de (just ordinal for now)
+- [X] fr (just ordinal for now)
 
 ## JSON-language files
 
