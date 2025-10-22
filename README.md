@@ -134,6 +134,7 @@ By default all elements with ```t``` attribute will be translatesd after load. I
 ### pluralRules
 With ```pluralRules: true```, ```ddLocale``` attempts to add additional rules for cardinal and ordinal numbers. They describe adjustments for plural (```dog```→```dogs```) and numerical values (```1```→```1st```) ​​according to local rules. The ```pluralRules``` are limited to the generally accepted rules of the selected language. The list of exceptions is not always complete or even available. You can always set exceptions using additional ```keys``` in the language file.
 > **But please also feel free to add to the pluralRule scripts in the ```languages/pluralRules/``` folder.**
+
 ```ddLocale``` always attempts to load ```culture```.js. If it's not available, a second attempt is made with ```country```.js. If ```pluralRules``` is not found, it is disabled for the selected language.
 The ```pluralRules``` describe ordinal numbers, like ```1st``` and ```2nd```
 
