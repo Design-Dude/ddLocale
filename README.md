@@ -10,7 +10,8 @@
 - [x] Supports language switching of static elements without reloading the page.
 - [x] Extends the Javascript ```String``` and ```Date``` functionality.
 - [x] Support for Right To Left (RTL) languages.
-- [ ] optional support for ordinal (and cardinal) numbers where supporting rules can be defined in external scripts and/or in the JSON language files.
+- [ ] Support for word-by-word pluralization in the JSON language files.
+- [ ] Optional support for ordinal numbers with supporting rules defined for each language in external scripts.
 - [x] Fully functional language menu with behavior settings and styling options.
 
 ## Installation
@@ -132,20 +133,18 @@ Your set of existing options for use with ```toLocaleString()``` which allows da
 ### inline
 By default all elements with ```t``` attribute will be translatesd after load. If you don't want that you can set  ```inline: false```.
 
-### pluralRules
-With ```pluralRules: true```, ```ddLocale``` attempts to add additional rules for cardinal and ordinal numbers. They describe adjustments for plural (```dog```→```dogs```) and numerical values (```1```→```1st```) ​​according to local rules. The ```pluralRules``` are limited to the generally accepted rules of the selected language. The list of exceptions is not always complete or even available. You can always set exceptions using additional ```keys``` in the language file.
-> Please also feel free to add to the pluralRule scripts in the ```languages/pluralRules/``` folder.
+### ordinalRules
+With ```ordinalRules: true```, ```ddLocale``` attempts to add additional rules for ordinal numbers. They describe adjustments for numerical values (```1```→```1st```) ​​according to local rules.
+The available scripts can be found in the ```languages/ordinalRules/``` folder.
+
 
 ```ddLocale``` always attempts to load ```culture```.js. If it's not available, a second attempt is made with ```country```.js. If ```pluralRules``` is not found, it is disabled for the selected language.
 
 
 Unfortunately, the set of rules is far from complete. Current support is limited to:
-- [X] en (just ordinal for now)
-- [X] nl (just ordinal for now)
-- [X] sp (just ordinal for now)
-- [X] sp-CA (just ordinal for now)
-- [X] de (just ordinal for now)
-- [X] fr (just ordinal for now)
+- [X] nl
+- [ ] en (in progress)
+> Please also feel free to add missing ordinalRules for your language.
 
 ## JSON-language files
 
