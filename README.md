@@ -84,7 +84,7 @@ This example includes all the option available:
 			}
 		},
 		inline: false, // optional, default true
-		pluralRules: false, // optional, default false
+		ordinalRules: false, // optional, default false
 		log: false, // optional, default true
 		nocache: false // if true language files will be loaded using timestamps
 	});
@@ -138,13 +138,13 @@ With ```ordinalRules: true```, ```ddLocale``` attempts to add additional rules f
 The available scripts can be found in the ```languages/ordinalRules/``` folder.
 
 
-```ddLocale``` always attempts to load ```culture```.js. If it's not available, a second attempt is made with ```country```.js. If ```pluralRules``` is not found, it is disabled for the selected language.
+```ddLocale``` always attempts to load ```culture```.js. If it's not available, a second attempt is made with ```country```.js. If ```ordinalRules``` is not found, it is disabled for the selected language.
 
 
 Unfortunately, the set of rules is far from complete. Current support is limited to:
 - [X] nl
 - [ ] en (in progress)
-> Please also feel free to add missing ordinalRules for your language.
+> Please also feel free to add or request missing ordinalRules for your language.
 
 ## JSON-language files
 
@@ -223,7 +223,7 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 	let dateString1 = ddLocale.t(1760565600000, 'shortDate');
 	let dateString2 = (1760565600000).t('shortDate');
 ```
-Number can be presented as orinal numbers. Pass a number along with the special formatter instead of an option ```name```.
+Number can be presented as ordinal numbers. Pass a number along with the special formatter instead of an option ```name```.
 ```
 	let ordinal1 = ddLocale.t(1760565600000, {format: true});
 	let ordinal2 = (1760565600000).t({format: true});
