@@ -252,11 +252,14 @@ The ```word formater``` has two more additional options.
 ```
 
 ## Pluralization
-The values ​​in the language file can be expanded with plurals in two ways.
-1. Add ```->``` along with the plural form.
-2. Add ```->``` and the letter(s) you want to remove, ```-```, and add ```+```. In that order.
+The values ​​in the language file can be expanded with plurals in three ways.
+1. Simply add a ```key```+```value``` pair for both the singular and plural.
+2. Add ```->``` along with the plural form.
+3. Add ```->``` and the letter(s) you want to remove, ```-```, and add ```+```. In that order.
 
 ```
+	"car": "MG",
+	"cars": "Nissan and Porsche",
 	"cheese": "cheese->cheeses",
 	"child": "child->+ren",
 	"man": "man->-an+en",
