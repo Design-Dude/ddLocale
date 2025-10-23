@@ -157,16 +157,17 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 - If you plan to use the ```inline``` translation feature, it is important to use only **lowercase** letters for placeholder ```names```, because the standard ```data-*``` attributes used for inline data storage do not support uppercase letters.
 ```
 	{
+  		"bitcoin": "bitcoin->+s",
 		"bitcoins": "On {0} I had {1} {2} worth {3}.",
+  		"cheddar": "cheddar->+s",
+		"cheese": "cheese->cheeses",
 		"exit": {
 			"goodbye": "A presto {0} {1} {2}."
 		},
 		"fullname": "{firstname} {middlename} {lastname}",
 		"hello": "Hello {name} {lastname}.",
 		"hi": "Hi {fullname}.",
-		"tool name": "ddLocale",
-		"cheese": "cheese->cheeses",
-  		"cheddar": "cheddar->+s",
+		"tool name": "ddLocale"
 	}
 ```
 
