@@ -228,7 +228,8 @@ Number can be presented as ```ordinal numbers```. Pass a number along with the s
 	let defaultOrdinal1 = ddLocale.t(1760565600000, {format: true});  // → 1760565600000ste
 	let defaultOrdinal2 = (1760565600000).t({format: true});  // → 1760565600000ste
 	let defaultOrdinal3 = (1760565600000).t({ format: 'value' }); // → 1760565600000ste
-	let alternative = (1760565600000).t({ format: 'alt' }); // → 1760565600000ᵉ (not always available, but it is in  Dutch)
+	let realOrdinal = (1760565600000).t({ format: 'ordinal' }); // → 1.760.565.600.000ste
+	let alternative = (1760565600000).t({ format: 'alt' }); // → 1760565600000ᵉ (only available when supported by the selected language)
 	let wordFormat = (1760565600000).t({ format: 'word' }); // → 2 biljoen
 ```
 The ```word formater``` has two more additional options.
