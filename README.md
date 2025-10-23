@@ -255,8 +255,7 @@ The ```word formater``` has two more additional options.
 The values ​​in the language file can be expanded with plurals in three ways.
 1. Simply add a ```key```+```value``` pair for both the singular and plural.
 2. Add ```->``` along with the plural form.
-3. Add ```->``` and the letter(s) you want to remove, ```-```, and add ```+```. In that order.
-
+3. Add ```->``` and the letter(s) you want to remove, ```-```, and add ```+```. In that order. Useful for adding single letters and for long words.
 ```
 	"car": "MG",
 	"cars": "Nissan and Porsche",
