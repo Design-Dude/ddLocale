@@ -224,7 +224,11 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 	let dateString1 = ddLocale.t(1760565600000, 'shortDate');
 	let dateString2 = (1760565600000).t('shortDate');
 ```
-
+Number can be presented as orinal numbers. Pass a number along with the special formatter instead of an option ```name```.
+```
+	let ordinal1 = ddLocale.t(1760565600000, {format: true});
+	let ordinal2 = (1760565600000).t({format: true});
+```
 You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders per placeholder. Dates can be passed as a ```Date object``` or as a ```timestamp```.
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
