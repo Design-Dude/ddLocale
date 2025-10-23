@@ -1,5 +1,5 @@
 # ddLocale
-```ddLocale``` is a fairly lightweight and pretty easy to use JavaScript library for multilingual web apps and sites. Supports both script and inline translations for text, numbers, and dates from nestable JSON sources. Includes functionality for a fully customizable language menu.
+```ddLocale``` is a fairly simple and pretty easy to use JavaScript library for multilingual web apps and sites. Supports both script and inline translations for text, numbers, and dates from nestable JSON sources. Includes functionality for a fully customizable language menu.
 
 ## Features
 
@@ -10,7 +10,7 @@
 - [x] Supports language switching of static elements without reloading the page.
 - [x] Extends the Javascript ```String``` and ```Date``` functionality.
 - [x] Support for Right To Left (RTL) languages.
-- [ ] optional support for cardinal and ordinal numbers where supporting rules can be defined in external script and in the JSON language files.
+- [ ] optional support for ordinal (and cardinal) numbers where supporting rules can be defined in external scripts and/or in the JSON language files.
 - [x] Fully functional language menu with behavior settings and styling options.
 
 ## Installation
@@ -260,7 +260,7 @@ If the inline ```placeholders``` are themselves a ```key```, you must specify an
 ```
 	<h1 t="hi" data-t+fullname="fullname" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></h1>
 ```
-Of course this also works with numberd placeholders.
+Of course this also works with numbered placeholders.
 ```
 	<span t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></span>
 ```
