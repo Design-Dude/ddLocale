@@ -235,7 +235,21 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 	let dateString1 = ddLocale.t(1760565600000, 'shortDate');
 	let dateString2 = (1760565600000).t('shortDate');
 ```
-Similarly, you can pass the option ```name``` to display ```ordinals``` and/or ```bytes``` as long as the formatting option is present in ```toStringOptions```.
+Similarly, you can pass the option ```name``` to display ```ordinals``` and/or ```bytes``` as long as the formatting option is present in ```toStringOptions```. With these settings:
+```
+	toStringOptions: {
+		ordinal: { format: "ordinal" },
+		wordShort: { format: "word", short: true },
+		ordinalValue: { format: "value" },
+		ordinalWord: { format: "word" },
+		ordinalDecimalWord: { format: "word", decimals: 2 },
+		ordinalZeroWord: { format: "word", zero: "none" },
+		ordinalAlt: { format: "alt" },
+		ordinalSuffix: { format: "suffix" },
+		bytes: { format: "bytes" }
+	}
+```
+You will get these results:
 ```
 	let default = (1345236).t('ordinalValue')); → 1345236ste
 	let ordinal1 = (1345236).t('ordinal')); → 1.345.236ste
@@ -248,32 +262,12 @@ Similarly, you can pass the option ```name``` to display ```ordinals``` and/or `
 	let suffix = (345236).t('ordinalSuffix')); → ste
 	let bytes = (1536000).t('bytes')); → 1 MB
 ```
-See ```toStringOptions``` settings at the top of this document for the specifix option settings.
-
-
 You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders per placeholder. Dates can be passed as a ```Date object``` or as a ```timestamp```.
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
 ```
 	let bitcoins1 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
 	let bitcoins2 = "bitcoins".t([new Date(), 2.56, 'bitcoins', (2.56*95339.54)], ['date|shortDate', 'number', 'string', 'num|eur']);
-```
-
-## Ordinal numbers
-
-Number can be presented as ```ordinal numbers```. Pass a number along with the special ```formatter``` instead of an option ```name```. These example are from the ```nl-NL``` culture.
-```
-	let defaultOrdinal1 = ddLocale.t(1760565600000, {format: true});  // → 1760565600000ste
-	let defaultOrdinal2 = (1760565600000).t({format: true});  // → 1760565600000ste
-	let defaultOrdinal3 = (1760565600000).t({ format: 'value' }); // → 1760565600000ste
-	let realOrdinal = (1760565600000).t({ format: 'ordinal' }); // → 1.760.565.600.000ste
-	let alternative = (1760565600000).t({ format: 'alt' }); // → 1760565600000ᵉ (only available when supported by the selected language)
-	let wordFormat = (1760565600000).t({ format: 'word' }); // → 2 biljoen
-```
-The ```word formater``` has two more additional options.
-```
-	let decimalOrdinal = (1760565600000).t({ format: 'word', decimal: 2 }); // → 1,76 biljoen (nl-NL)
-	let zeroOrdinal = (0).t({ format: 'word', zero: 'none' }); // → 'none' (if the result is 0)
 ```
 
 ## Pluralization
