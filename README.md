@@ -81,7 +81,16 @@ This example includes all the option available:
 				year: "numeric", // or known options for date translations
 				month: "short",
 				day: "numeric",
-			}
+			},
+			ordinal: { format: "ordinal" },
+			wordShort: { format: "word", short: true },
+			ordinalValue: { format: "value" },
+			ordinalWord: { format: "word" },
+			ordinalDecimalWord: { format: "word", decimals: 2 },
+			ordinalZeroWord: { format: "word", zero: "none" },
+			ordinalAlt: { format: "alt" },
+			ordinalSuffix: { format: "suffix" },
+			bytes: { format: "bytes" }
 		},
 		inline: false, // optional, default true
 		ordinalRules: false, // optional, default false
@@ -226,6 +235,22 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 	let dateString1 = ddLocale.t(1760565600000, 'shortDate');
 	let dateString2 = (1760565600000).t('shortDate');
 ```
+Similarly, you can pass the option ```name``` to display ```ordinals``` and/or ```bytes``` as long as the formatting option is present in ```toStringOptions```.
+```
+	let default = (1345236).t('ordinalValue')); → 1345236ste
+	let ordinal1 = (1345236).t('ordinal')); → 1.345.236ste
+	let ordinal2 = (300000).t('ordinal')); → 300 duizendste
+	let word = (3).t('ordinalWord')); → three
+	let short = (1345236).t('wordShort')); → 1 mln
+	let alternative = (300000).t('ordinalAlt')); → 300.000ᵉ (availability depends on language)
+	let zero = (0).t('ordinalZeroWord')); → 'none';
+	let decimal = (1345236).t('ordinalDecimalWord')); → 1,35 miljoen
+	let suffix = (345236).t('ordinalSuffix')); → ste
+	let bytes = (1536000).t('bytes')); → 1 MB
+```
+See ```toStringOptions``` settings at the top of this document for the specifix option settings.
+
+
 You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders per placeholder. Dates can be passed as a ```Date object``` or as a ```timestamp```.
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
