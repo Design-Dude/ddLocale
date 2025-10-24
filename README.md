@@ -300,6 +300,7 @@ Dates must be passed as ```timestamps```. Because timestamps are just numbers, y
 ```
 	<div t="1760565600000" data-t+="date"></div>
 	<div t="176056.45" data-t+="num|eur"></div>
+	<div t="ordinalTest" data-t+0="12542334567" data-t+1="1345236" data-t+2="1536000" data-t+0+="n|ordinalWord" data-t+1+="n|ordinalSuffix" data-t+2+="n|bytes"></div> 
 ```
 Because inline translations are recursive, the result of a placeholder translation cannot be an existing ```key```. To prevent the translation from being incorrectly translated further, you can explicitly pass the placeholder as a string.
 - ```String``` binders start with a ```s```, ```str``` or ```string```.
