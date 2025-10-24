@@ -176,6 +176,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 		"fullname": "{firstname} {middlename} {lastname}",
 		"hello": "Hello {name} {lastname}.",
 		"hi": "Hi {fullname}.",
+		"ordinalTest": "Word: {0}, ordinal: {2}, bytes: {3}",
 		"tool name": "ddLocale"
 	}
 ```
@@ -235,21 +236,7 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 	let dateString1 = ddLocale.t(1760565600000, 'shortDate');
 	let dateString2 = (1760565600000).t('shortDate');
 ```
-Similarly, you can pass the option ```name``` to display ```ordinals``` and/or ```bytes``` as long as the formatting option is present in ```toStringOptions```. With the following settings:
-```
-	toStringOptions: {
-		ordinal: { format: "ordinal" },
-		wordShort: { format: "word", short: true },
-		ordinalValue: { format: "value" },
-		ordinalWord: { format: "word" },
-		ordinalDecimalWord: { format: "word", decimals: 2 },
-		ordinalZeroWord: { format: "word", zero: "none" },
-		ordinalAlt: { format: "alt" },
-		ordinalSuffix: { format: "suffix" },
-		bytes: { format: "bytes" }
-	}
-```
-You will get these results:
+Similarly, you can pass the option ```name``` to display ```ordinals``` and/or ```bytes``` as long as the formatting option is present in ```toStringOptions```.
 ```
 	let default = (1345236).t('ordinalValue')); → 1345236ste
 	let ordinal1 = (1345236).t('ordinal')); → 1.345.236ste
@@ -265,10 +252,10 @@ You will get these results:
 You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders per placeholder. Dates can be passed as a ```Date object``` or as a ```timestamp```.
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
-- Number ```string``` binders start with a ```s```, ```str``` or ```string``` followed by a ```|``` and the format option ```name``` from ```toStringOptions```.
 ```
 	let bitcoins1 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
 	let bitcoins2 = "bitcoins".t([new Date(), 2.56, 'bitcoins', (2.56*95339.54)], ['date|shortDate', 'number', 'string', 'num|eur']);
+	let ordinalTest = "ordinalTest".t({ 0: 12542334567, 1: 1345236, 2: 1536000 }, {0:'n|ordinalWord', 1:'n|ordinalSuffix', 2:'n|bytes'}));
 ```
 
 ## Pluralization
