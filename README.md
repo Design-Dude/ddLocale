@@ -70,7 +70,7 @@ This example includes all the option available:
 		},
 		failed: function (err) { // something went wrong
 		},
-		toStringOptions: { // your collection of option for use with toLocaleString
+		stringFormats: { // your collection of option for use with toLocaleString
 			eur: { // name your options
 				style: "currency", // known options for number translations
 				currency: "EUR",
@@ -136,7 +136,7 @@ The ```ready()``` function will be called each time a new language is set and lo
 ### success
 If other scripts or libraries use ```ddLocale``` you can start their initialisation from the ```success()``` function. ```success()``` will only be called once per (page) load.
 
-### toStringOptions
+### stringFormats
 Your set of existing options for use with ```toLocaleString()``` which allows dates and numeric values ​​to be represented in locale format.
 
 ### inline
@@ -221,7 +221,7 @@ To localize numbers and dates you can pass ```ddLocale.culture``` to the standar
 		day: "numeric",
 	});
 ```
-To make things a bit easier and shorter, you can store your options in ```toStringOptions``` (see ```Initialisation``` above) and then use the extended functions ```Number.t()``` and ```Date.t()``` with the option ```name``` you want to use.
+To make things a bit easier and shorter, you can store your options in ```stringFormats``` (see ```Initialisation``` above) and then use the extended functions ```Number.t()``` and ```Date.t()``` with the option ```name``` you want to use.
 ```
 	let dateString = new Date().t('shortDate');
 	let currency = (12345.678).t('eur');
@@ -236,7 +236,7 @@ Passing ```timestamps``` is allowed, but without specific ```date options``` it 
 	let dateString1 = ddLocale.t(1760565600000, 'shortDate');
 	let dateString2 = (1760565600000).t('shortDate');
 ```
-Similarly, you can pass the option ```name``` to display ```ordinals``` and/or ```bytes``` as long as the formatting option is present in ```toStringOptions```.
+Similarly, you can pass the option ```name``` to display ```ordinals``` and/or ```bytes``` as long as the formatting option is present in ```stringFormats```.
 ```
 	let default = (1345236).t('ordinalValue')); → 1345236ste
 	let ordinal1 = (1345236).t('ordinal')); → 1.345.236ste
@@ -250,8 +250,8 @@ Similarly, you can pass the option ```name``` to display ```ordinals``` and/or `
 	let bytes = (1536000).t('bytes')); → 1 MB
 ```
 You can fill placeholders with dates and numbers too, but you can only do this using arrays or objects, because you have to pass an additional array or object with special binders per placeholder. Dates can be passed as a ```Date object``` or as a ```timestamp```.
-- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
-- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
+- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```stringFormats```.
+- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```stringFormats```.
 ```
 	let bitcoins1 = ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoins', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 3:'n|eur' });
 	let bitcoins2 = "bitcoins".t([new Date(), 2.56, 'bitcoins', (2.56*95339.54)], ['date|shortDate', 'number', 'string', 'num|eur']);
@@ -295,8 +295,8 @@ Of course this also works with numbered placeholders.
 	<span t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></span>
 ```
 Dates must be passed as ```timestamps```. Because timestamps are just numbers, you need to tell ```ddLocale``` what kind of number it is with ```binders```. This is done with an additional attribute with the same attribute ```name```, appended with an additional ```+``` sign.
-- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```toStringOptions```.
-- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```toStringOptions```.
+- ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```stringFormats```.
+- ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```stringFormats```.
 ```
 	<div t="1760565600000" data-t+="date"></div>
 	<div t="176056.45" data-t+="num|eur"></div>
@@ -313,7 +313,7 @@ string thingies
 
 ### Dates and numbers
 
-Dates and numbers can also be static, but only if any options are stored in ```toStringOptions```.
+Dates and numbers can also be static, but only if any options are stored in ```stringFormats```.
 
 Numbers...
 ```
