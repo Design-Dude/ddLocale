@@ -13,6 +13,7 @@
 - [ ] Support for word-by-word pluralization in the JSON language files.
 - [ ] Optional support for ordinal numbers with supporting rules defined for each language in external scripts.
 - [x] Fully functional language menu with behavior settings and styling options.
+- [ ] Free (or 1 coffee).
 
 ## Installation
 
@@ -261,8 +262,8 @@ You can fill placeholders with dates and numbers too, but you can only do this u
 ## Pluralization
 The values ​​in the language file can be expanded with plurals in three ways.
 1. Simply add a ```key```+```value``` pair for both the singular and plural.
-2. Add ```->``` along with the plural form.
-3. Add ```->``` and the letter(s) you want to remove, ```-```, and add ```+```. In that order. Useful for adding single letters and for long words.
+2. Add ```->=``` along with the plural form.
+3. Add ```->```, followed by ```-``` with the letter(s) you want to remove. Add ```+``` followed by everything else you want to add. Useful for adding single letters and for long words.
 ```
 	"car": "MG",
 	"cars": "Nissan and Porsche",
@@ -270,7 +271,19 @@ The values ​​in the language file can be expanded with plurals in three ways
 	"child": "child->+ren",
 	"man": "man->-an+en",
 ```
-In normal use, these extensions are ignored...
+In normal use, these extensions are ignored. By sending a number, you can test whether that number results in singular or plural form in the selected language.
+```
+	let normal = 'One car is a ' + ddLocale.t("car") + 'two cars are ' + ddLocale.t("cars");
+	let noCheese = 'No ' + 'cheese'.t(0);
+	let oneCheese = 'One ' + 'cheese'.t(1);
+	let twoCheese = 'Two ' + 'cheese'.t(2);
+	let oneChild = (1).t('word') + ' ' + 'cheese'.t(1);
+	let oneChild = (11).t('word') + ' ' + 'cheese'.t(11);
+	let oneChild = ddLocale.t(1, 'word') + ' ' + ddLocale.t('cheese', 1);
+	let man = ddLocale.t(1, 'word') + ' ' + ddLocale.t('man', 1);
+	let men = ddLocale.t(100, 'word') + ' ' + ddLocale.t('man', 100);
+	let ordinalTest = "Two {0} and a {1}.".t({ 0: 'man', 1: 'bird' }, {0:2}));
+```
 
 ## Inline usage
 
@@ -307,9 +320,11 @@ Because inline translations are recursive, the result of a placeholder translati
 ```
 	<div t="bitcoins" data-t+0="1760565600000" data-t+0+="d|shortDate" data-t+1="2.56" data-t+1+="num" data-t+2="bitcoins" data-t+2+="s" data-t+3="244069.222" data-t+3+="n|eur"></div>
 ```
-  
-### TODO!
-string thingies
+For pluralisation you can pass a number-string in the + aatribute.
+```
+	<div t="bitcoins" data-t+0="1760565600000" data-t+0+="d|shortDate" data-t+1="2.56" data-t+1+="num" data-t+2="bitcoins" data-t+2+="s" data-t+3="244069.222" data-t+3+="n|eur"></div>
+```
+
 
 ### Dates and numbers
 
