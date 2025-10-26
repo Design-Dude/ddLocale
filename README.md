@@ -265,11 +265,13 @@ The values ​​in the language file can be expanded with plurals in three ways
 2. Add ```->=``` along with the plural form.
 3. Add ```->```, followed by ```-``` with the letter(s) you want to remove. Add ```+``` followed by everything else you want to add. Useful for adding single letters and for long words.
 ```
-	"car": "MG",
-	"cars": "Nissan and Porsche",
-	"cheese": "cheese->cheeses",
-	"child": "child->+ren",
-	"man": "man->-an+en",
+	{
+		"car": "MG",
+		"cars": "Nissan and Porsche",
+		"cheese": "cheese->cheeses",
+		"child": "child->+ren",
+		"man": "man->-an+en",
+	}
 ```
 In normal use, these extensions are ignored. By sending a number, you can test whether that number results in singular or plural form in the selected language.
 ```
