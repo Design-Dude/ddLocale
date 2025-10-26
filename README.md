@@ -324,7 +324,7 @@ Because inline translations are recursive, the result of a placeholder translati
 ```
 For pluralisation you can pass a number-string in the + aatribute.
 ```
-	<div t="bitcoins" data-t+0="1760565600000" data-t+0+="d|shortDate" data-t+1="2.56" data-t+1+="num" data-t+2="bitcoins" data-t+2+="s" data-t+3="244069.222" data-t+3+="n|eur"></div>
+	<div t="{0} {1} and a {2}." data-t+0="100" data-t+0+="n|ordinalWord" data-t+1="man" data-t+1+="100" data-t+2="bird"></div>
 ```
 
 
