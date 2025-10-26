@@ -178,7 +178,9 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 		"hello": "Hello {name} {lastname}.",
 		"hi": "Hi {fullname}.",
 		"ordinalTest": "Word: {0}, ordinal: {2}, bytes: {3}",
-		"tool name": "ddLocale"
+		"plurals": "{0} {1} and a {2}.",
+		"tool name": "ddLocale",
+
 	}
 ```
 
@@ -284,7 +286,7 @@ In normal use, these extensions are ignored. By sending a number, you can test w
 	let oneChild = ddLocale.t(1, 'word') + ' ' + ddLocale.t('cheese', 1);
 	let man = ddLocale.t(1, 'word') + ' ' + ddLocale.t('man', 1);
 	let men = ddLocale.t(100, 'word') + ' ' + ddLocale.t('man', 100);
-	let ordinalTest = "Two {0} and a {1}.".t({ 0: 'man', 1: 'bird' }, {0:2}));
+	let plurals = "plurals".t({0: 2, 1: 'man', 2: 'bird' }, { 0:'n|ordinalWord', 1:2}));
 ```
 
 ## Inline usage
@@ -324,7 +326,7 @@ Because inline translations are recursive, the result of a placeholder translati
 ```
 For pluralisation you can pass a number-string in the + aatribute.
 ```
-	<div t="{0} {1} and a {2}." data-t+0="100" data-t+0+="n|ordinalWord" data-t+1="man" data-t+1+="100" data-t+2="bird"></div>
+	<div t="plurals" data-t+0="100" data-t+0+="n|ordinalWord" data-t+1="man" data-t+1+="100" data-t+2="bird"></div>
 ```
 
 
