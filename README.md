@@ -1,5 +1,5 @@
 # ddLocale
-```ddLocale``` is a fairly simple and pretty easy to use JavaScript library for multilingual web apps and sites. Supports both script and inline translations for text, numbers, and dates from nestable JSON sources. Includes functionality for a fully customizable language menu.
+```ddLocale``` is a flexible and pretty easy to use JavaScript library for multilingual web apps and sites. It's similar to i18n, but without the clutter. It supports both script and inline translations for text, simplified plurals, (ordinals) numbers, and dates from nestable JSON sources. It also includes functionality for a fully customizable language menu.
 
 ## Features
 
