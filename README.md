@@ -22,7 +22,7 @@ You can also use this link for the latest version.
 ```
 	<script src="./.../ddLocale.js"></script>
 ```
-
+Add a ```language``` folder to your project and include the JSON files with the necessary tranlations per language. Also include the formater script files in the ```ordinalRules``` folder if you are planning to use ordinal number translations.
 
 ## Initialisation
 
