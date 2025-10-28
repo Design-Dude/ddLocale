@@ -146,9 +146,10 @@ stringFormats: { // your collection of options
 	keyName: { // name your options
 		format: "word", // value | ordinal | word | suffix | alt | bytes
 		zero: "none", // optional replacement for value 0. Value may be a translation key
-		decimals: 2, // number of decimals used to round the value
-		gender: 'f' // default 'm', used in some countries
+		decimals: 2, // optional number of decimals (defualt 0) used to round the value
+		gender: 'f' // optional gender (default 'm') used in some countries
 	}
+}
 ```
 
 ### inline
