@@ -98,7 +98,8 @@ This example includes all the option available:
 		inline: false, // optional, default true
 		ordinalRules: false, // optional, default false
 		log: false, // optional, default true
-		nocache: false // if true language files will be loaded using timestamps
+		nocache: false, // if true language files will be loaded using timestamps
+		minified: true // default false, load minified ordinal scripts (i.e. en.min.js)
 	});
 ```
 
