@@ -53,6 +53,8 @@ This example includes all the option available:
 			domId: "language", // id of dom-node where language menu will be triggered
 			button: "", // "long" title, "short" language code or some translation "key"
 			menu: "center" // optional, className for the dropdown menu
+			autoOpen: 200, // delay in ms
+			autoClose: 200 // delay in ms (if used, must be long enough to reach the menu from the butten)
 		},
 		ready: function (object) {
 			/*
@@ -363,6 +365,7 @@ This is an example of what the functional menu looks like after initialisation w
 		</div>
 	</div>
 ```
+Use the ```autoOpen``` and ```autoClose``` options to open and close the menu without clicking. These option values ​​are in milliseconds. The ```autoClose``` timing should be long enough, depending on the distance between the button and the popup menu, otherwise the menu will close before the mouse reaches menu.
 
 ## css
 
