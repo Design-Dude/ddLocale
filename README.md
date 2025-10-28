@@ -10,10 +10,10 @@
 - [x] Supports language switching of static elements without reloading the page.
 - [x] Extends the Javascript ```String``` and ```Date``` functionality.
 - [x] Support for Right To Left (RTL) languages.
-- [ ] Support for word-by-word pluralization in the JSON language files.
-- [ ] Optional support for ordinal numbers with supporting rules defined for each language in external scripts.
+- [x] Support for word-by-word pluralization in the JSON language files.
+- [x] Optional support for ordinal numbers with supporting rules defined for each language in external scripts.
 - [x] Fully functional language menu with behavior settings and styling options.
-- [ ] Free (or 1 coffee).
+- [x] Free (a coffee would be much appriciated).
 
 ## Installation
 
@@ -92,7 +92,7 @@ This example includes all the option available:
 			ordinalDecimalWord: { format: "word", decimals: 2 },
 			ordinalZeroWord: { format: "word", zero: "none" },
 			ordinalAlt: { format: "alt" },
-			ordinalSuffix: { format: "suffix" },
+			ordinalSuffix: { format: "suffix", gender: "f" },
 			bytes: { format: "bytes" }
 		},
 		inline: false, // optional, default true
@@ -140,7 +140,16 @@ The ```ready()``` function will be called each time a new language is set and lo
 If other scripts or libraries use ```ddLocale``` you can start their initialisation from the ```success()``` function. ```success()``` will only be called once per (page) load.
 
 ### stringFormats
-Your set of existing options for use with ```toLocaleString()``` which allows dates and numeric values ​​to be represented in locale format.
+Your set of existing options for use with ```toLocaleString()``` which allows dates and numeric values ​​to be represented in locale format. The number and date formats standard javascript options. The string formats look like this:
+```
+stringFormats: { // your collection of options
+	keyName: { // name your options
+		format: "word", // value | ordinal | word | suffix | alt | bytes
+		zero: "none", // optional replacement for value 0. Value may be a translation key
+		decimals: 2, // number of decimals used to round the value
+		gender: 'f' // default 'm', used in some countries
+	}
+```
 
 ### inline
 By default all elements with ```t``` attribute will be translatesd after load. If you don't want that you can set  ```inline: false```.
