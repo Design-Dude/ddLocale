@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640px" height="640px" viewBox="0 0 640 640" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" fill-rule="nonzero">
+            <rect id="Rectangle" fill="#009246" x="0" y="0" width="640" height="640"></rect>
+            <rect id="Rectangle" fill="#FFFFFF" x="213.12" y="0" width="426.88" height="640"></rect>
+            <rect id="Rectangle" fill="#CE2B37" x="426.88" y="0" width="213.12" height="640"></rect>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,24 @@
+{
+  "bird": "vogel",
+  "bitcoin": "bitcoin->+s",
+  "bitcoins": "Op {0} had ik {1} {2} met een waarde van {3}.",
+  "cheddar": "toast->+s",
+  "cheese": "kaas->-as+zen",
+  "closed": "echt dicht",
+  "exit": {
+    "goodbye": "Tot snel {0} {1} {2}."
+  },
+  "fullname": "{firstname} {middlename} {lastname}",
+  "hello": "Hallo {name} {lastname}.",
+  "hi": "Hoi {fullname}.",
+  "man": "man->+nen",
+  "my name is": "Mijn naam is {fullname}",
+  "none": "geen",
+  "ordinalTest": "Woord: {0}, telwoord: {1}, bytes: {2}",
+  "plurals": "{0} {1} en een {2}.",
+  "seeLog": "Zie de console voor het script log!",
+  "seePage": "Zie de pagina voor statische attribuut vertalingen!",
+  "seeWeb": "Zie https://www.design-dude.nl/apps/ddLocale/",
+  "the door is": "De deur is {0}.",
+  "tool name": "ddLocale"
+}

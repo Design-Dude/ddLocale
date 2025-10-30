@@ -1,0 +1,24 @@
+{
+  "bird": "uccello",
+  "bitcoin": "bitcoin->+s",
+  "bitcoins": "Il {0} avevo {1} {2} per un valore di {3}.",
+  "cheddar": "cheddar->+s",
+  "cheese": "formaggio->=formaggi",
+  "closed": "davvero chiusa",
+  "exit": { 
+    "goodbye": "A presto {0} {1} {2}."
+  },
+  "fullname": "{firstname} {middlename} {lastname}",
+  "hello": "Ciao {name} {lastname}.",
+  "hi": "Salve {fullname}.",
+  "man": "uomo->=uomini",
+  "my name is": "Mi chiamo {fullname}",
+  "none": "nessuno",
+  "ordinalTest": "Parola: {0}, ordinale: {1}, byte: {2}",
+  "plurals": "{0} {1} e un {2}.",
+  "seeLog": "Guarda la console per il registro dello script!",
+  "seePage": "Vedi la pagina per le traduzioni statiche degli attributi!",
+  "seeWeb": "Vedi https://www.design-dude.nl/apps/ddLocale/",
+  "the door is": "La porta è {0}.",
+  "tool name": "ddLocale"
+}

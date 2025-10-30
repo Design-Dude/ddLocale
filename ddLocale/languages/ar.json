@@ -1,0 +1,24 @@
+{
+  "bird": "\u200Fطائر",
+  "bitcoin": "\u200Fبيتكوين",
+  "bitcoins": "\u200Fفي {0} كان لدي {1} {2} بقيمة {3}.",
+  "cheddar": "\u200Fشيدر",
+  "cheese": "\u200Fجبن",
+  "closed": "\u200Fمغلق حقا",
+  "exit": {
+    "goodbye": "\u200Fأراك قريبًا {0} {1} {2}."
+  },
+  "fullname": "{firstname} {middlename} {lastname}",
+  "hello": "\u200Fمرحبًا {name} {lastname}.",
+  "hi": "\u200Fأهلًا {fullname}.",
+  "man": "\u200Fرجل->+ون",
+  "my name is": "\u200Fاسمي {fullname}",
+  "none": "\u200Fلا شيء",
+  "ordinalTest": "\u200Fكلمة: {0}، عدد ترتيبي: {1}، بايتات: {2}",
+  "plurals": "\u200F{0} {1} و {2}.",
+  "seeLog": "\u200Fانظر إلى وحدة التحكم للحصول على سجل البرنامج!",
+  "seePage": "\u200Fانظر إلى الصفحة لترجمات السمات الثابتة!",
+  "seeWeb": "\u200Fانظر https://www.design-dude.nl/apps/ddLocale/",
+  "the door is": "\u200Fالباب {0}",
+  "tool name": "ddLocale"
+}

@@ -1,0 +1,116 @@
+@link_color: blue;
+@link_color_selected: black;
+@link_color_hover: black;
+@menu_background_color: #efefeff4;
+@menu_background_color_selected: lightgrey;
+@menu_background_color_hover: white;
+
+li {
+	&:first-letter {
+		text-transform: uppercase;
+	}
+}
+#language {
+	position: absolute;
+	width: 48px;
+	height: 48px;
+	top: 45px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	cursor: hand;
+	cursor: pointer;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+	z-index: 10;
+	#language-menu-container {
+		position: absolute;
+		background-color: @menu_background_color;
+		box-shadow: 0 10px 40px -10px #000000;
+		border-radius: 6px;
+		z-index: 100;
+		top: 100%;
+		left: 0;
+		transform: translate(0, 10px);
+		overflow: hidden;
+		a {
+			font-weight: normal;
+			text-decoration: none;
+			color: @link_color;
+			display: block;
+			line-height: 16px;
+			padding: 8px 10px;
+			&:not(.selected) {
+				&:hover {
+					background-color: @menu_background_color_hover;
+					color: @link_color_hover;
+				}
+			}
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+		a.selected {
+			background-color: @menu_background_color_selected;
+			cursor: default;
+			text-decoration: none;
+			color: @link_color_selected;
+		}
+	}
+	#language-menu-container.left {
+		left: 0;
+		transform: translate(0, 8px);
+	}
+	#language-menu-container.right {
+		left: 100%;
+		transform: translate(-100%, 8px);
+	}
+	#language-menu-container.center {
+		left: 50%;
+		transform: translate(-50%, 8px);
+		a {
+			text-align: center;
+		}
+	}
+	#language-menu-button {
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+	}
+	&[culture=nl] {
+		background-image: url('../images/flags/nl.svg');
+	}
+	&[culture=nl-FY] {
+		background-image: url('../images/flags/nl-FY.svg');
+	}
+	&[culture=nl-BE] {
+		background-image: url('../images/flags/be.svg');
+	}
+	&[culture=en] {
+		background-image: url('../images/flags/en.svg');
+	}
+	&[culture=fr] {
+		background-image: url('../images/flags/fr.svg');
+	}
+	&[culture=it] {
+		background-image: url('../images/flags/it.svg');
+	}
+	&[culture=de] {
+		background-image: url('../images/flags/de.svg');
+	}
+	&[culture=es] {
+		background-image: url('../images/flags/es.svg');
+	}
+	&[culture=ar] {
+		background-image: url('../images/flags/ar.svg');
+	}
+}
+
+body[direction=rtl] {
+	#language-menu-container.left {
+		left: 100%;
+		transform: translate(-100%, 8px);
+	}
+}

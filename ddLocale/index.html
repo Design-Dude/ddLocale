@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="be">
+	<head>
+		<meta charset="UTF-8">
+		<title>ddLocale demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<link rel='stylesheet' href='./styles/styles.css' type='text/css' media='all' />
+		<script src="./scripts/ddLocale.js"></script>
+		<script src="./scripts/script.js"></script>
+
+	</head>
+	<body>
+		<div id="language"></div>
+		<br/><br/><br/><br/>
+		<div t="seeLog"></div>
+		<div t="seeWeb"></div>
+		<br/>——————
+		<ol>
+			<li nr="2" t="hello" data-t+name="Benicio" data-t+lastname="Toro, del"></li>
+			<li nr="2" t="hi" data-t+fullname="fullname" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></li>
+			<li nr="2" t="hi" data-t+fullname="fullname" data-t+fullname+firstname="Mek" data-t+fullname+lastname="Yo"></li>
+
+			<li nr="2" t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></li>
+			<li t="ordinalTest" data-t+0="128" data-t+1="128" data-t+2="128" data-t+0+="n|ordinalWord" data-t+1+="n|ordinalSuffix" data-t+2+="n|bytes"></li>
+			<li t="ordinalTest" data-t+0="12542334567" data-t+1="1345236" data-t+2="1536000" data-t+0+="n|ordinalWord" data-t+1+="n|ordinalSuffix" data-t+2+="n|bytes"></li>
+			<li nr="1" t="plurals" data-t+0="1" data-t+0+="n|ordinalWord" data-t+1="man" data-t+1+="1" data-t+2="bird"></li>
+			<li nr="2" t="plurals" data-t+0="100" data-t+0+="n|ordinalWord" data-t+1="man" data-t+1+="100" data-t+2="bird"></li>
+			<li nr="2" t="129.95" data-t+="n|ordinalDecimalWord"></li>
+			<li t="176056.45" data-t+="num|eur"></li>
+			<li t="1760565600000" data-t+="date"></li>
+
+			<li t="bitcoins" data-t+0="1760565600000" data-t+0+="d|shortDate" data-t+1="2.56" data-t+1+="num" data-t+2="bitcoins" data-t+2+="s" data-t+3="244069.222" data-t+3+="n|eur"></li>
+			<li t="my name is" data-t+fullname="fullname" data-t+fullname+first="Me" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></li>
+
+
+			<li t="129.88" data-t+="n|ordinal"></li>
+			<li t="1760565600000" data-t+="d|shortDate"></li>
+			<li t="man" data-t+="0"></li>
+			<li t="man" data-t+="1"></li>
+			<li t="man" data-t+="100"></li>
+			<li t="the door is" data-t+0="closed"></li>
+		</ol>
+	</body>
+</html>
