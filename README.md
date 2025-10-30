@@ -205,8 +205,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 ## Scripting usage
 
 You can put ```ddLocal``` to work via scripting.
-> **Remember:** ```ddLocal``` is not recursive. The name of a placeholder will **NOT** be translated if a key with the same name exists. First, create the translation for the desired placeholder and feed that to the placeholder!
-
+> ```ddLocal``` is semi-recursive. The name of a placeholder is translated if a key with the same name exists and the ```formatter``` is not equal to ```s```. However, going deeper than one level is not fully tested (and actually not necessary).
 The following example make use of the JSON above. Just pass the ```key``` to ```ddLocale.t()``` translation function. 
 ```
 	let myTranslation = ddLocale.t("tool name");
@@ -309,11 +308,17 @@ In normal use, these extensions are ignored. By sending a number, you can test w
 ## Inline usage
 
 Static elements can be translatable too.
-> Unlike use via scripting, the inline solution **IS** recursive, as long as necessary placeholders are defined!
+> The inline solution is also semi-recursive, as long as the necessary placeholders are defined! However, recursive values ​​deeper than one level haven't been fully tested.
 
 Place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
 ```
 	<h1 t="tool name"></h1>
+```
+Inline attributes for long phrases with placeholders or even recursive keys can be complex. The best practice is to retrieve the translation via scripting, including the attributes. You do this by appending the ```ddLocale.t()``` function with an additional option ```true```. You will then receive an array containing two strings. The ```first``` string is the full ```attribute string```, and the ```second``` is the ```result```. Next you can fill the DOM-element.
+```
+	let toolname = ddLocale.t("tool name"); -> "ddLocale"
+	let toolnameAndAttributes = ddLocale.t("tool name", true); -> ["t=\"tool name\"", "ddLocale"];
+	<h1 t="tool name">ddLocale</h1>
 ```
 If the inline ```key``` has ```placeholders``` the corrresponding values must be present in ```data-t+*``` attributes, where ```*``` is a corresponding ```placeholders```.
 > It is important to use only **lowercase** letters for placeholder ```names```, because the standard ```data-*``` attributes used for inline data storage do not support uppercase letters!
