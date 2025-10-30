@@ -8,7 +8,7 @@
 - [x] Multiple syntax options, such as attributes, arrays, or objects.
 - [x] Extensive options for inline translation.
 - [x] Supports language switching of static elements without reloading the page.
-- [x] Extends the Javascript ```String``` and ```Date``` functionality.
+- [x] Optionally extends the Javascript ```String```, ```Number``` and ```Date``` functionality.
 - [x] Support for Right To Left (RTL) languages.
 - [x] Support for word-by-word pluralization in the JSON language files.
 - [x] Optional support for ordinal numbers with supporting rules defined for each language in external scripts.
@@ -99,7 +99,8 @@ This example includes all the option available:
 		ordinalRules: false, // optional, default false
 		log: false, // optional, default true
 		nocache: false, // if true language files will be loaded using timestamps
-		minified: true // default false, load minified ordinal scripts (i.e. en.min.js)
+		minified: true, // default false, load minified ordinal scripts (i.e. en.min.js)
+		usePrototypes: true // default false, extends existing prototypes ```String```, ````Number``` and ````Date```.
 	});
 ```
 
@@ -168,6 +169,9 @@ Unfortunately, the set of rules is far from complete. Current support is limited
 - [X] nl
 - [ ] en (in progress)
 > Please also feel free to add or request missing ordinalRules for your language.
+
+### usePrototypes
+By default, ```ddLocale``` works independently. You can optionally add the same functionality to the existing ```String```, ```Number```, and ```Date``` prototypes. A function call like ```ddLocale.t(key, options)``` would then also work like ```(key).t(options)```, where key can be a ```String```, ```Number```, or ```Date```.
 
 ## JSON-language files
 
