@@ -8,11 +8,11 @@
 - [x] Multiple syntax options, such as attributes, arrays, or objects.
 - [x] Extensive options for inline translation.
 - [x] Supports language switching of static elements without reloading the page.
-- [x] Optionally extends the Javascript ```String```, ```Number``` and ```Date``` functionality.
+- [x] Optionally extends the Javascript ```String```, ```Number```, ```Date``` and ```Element``` functionality.
 - [x] Support for Right To Left (RTL) languages.
-- [x] Support for word-by-word pluralization in the JSON language files.
+- [x] Support for simple word-by-word pluralization in the JSON language files.
 - [x] Optional support for ordinal numbers with supporting rules defined for each language in external scripts.
-- [x] Fully functional language menu with behavior settings and styling options.
+- [x] Fully functional language menu with behavior settings (WCAG-compliant) and styling options.
 - [x] Free (a coffee would be much appriciated).
 
 ## Installation
