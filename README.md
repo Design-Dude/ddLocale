@@ -316,13 +316,13 @@ Place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the
 ```
 Inline attributes for long phrases with placeholders or even recursive keys can be complex. The best practice is to retrieve the translation via scripting, including the attributes. You do this by appending the ```ddLocale.t()``` function with an additional option ```true```. You will then receive an array with two values. The first is simply the ```result``` of the translation. The second value is an ```object``` containing all the necessary attribute names and their values. This allows you to provide the DOM element in question with attributes. With the option ```usePrototypes: true```, the JavaScript ```Element``` is extended with the ```setAttributes()``` function, which can be fed with the returned ```object```.
 ```
-	let toolname = ddLocale.t("tool name"); -> "ddLocale"
-	let toolnameAndAttributes = ddLocale.t("tool name", true); -> ["ddLocale", { t:"tool name" }];
+	let toolname = ddLocale.t("tool name"); → "ddLocale"
+	let toolnameAndAttributes = ddLocale.t("tool name", true); → ["ddLocale", { t:"tool name" }];
 	<h1 id="header"></h1>
 	let h1 = document.getElementById('header');
 	h1.innerHTML = toolnameAndAttributes[0];
 	h1.setAttributes(toolnameAndAttributes[1]);
-	<h1 id="header" t="tool name">ddLocale</h1>
+	→ <h1 id="header" t="tool name">ddLocale</h1>
 ```
 If the inline ```key``` has ```placeholders``` the corrresponding values must be present in ```data-t_*``` attributes, where ```*``` is a corresponding ```placeholders```.
 > It is important to use only **lowercase** letters for placeholder ```names```, because the standard ```data-*``` attributes used for inline data storage do not support uppercase letters!
