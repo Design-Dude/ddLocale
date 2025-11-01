@@ -308,47 +308,51 @@ In normal use, these extensions are ignored. By sending a number, you can test w
 ## Inline usage
 
 Static elements can be translatable too.
-> The inline solution is also semi-recursive, as long as the necessary placeholders are defined! However, recursive values ​​deeper than one level haven't been fully tested.
+> The inline solution is more or less recursive, as long as the necessary placeholders are defined! Recursive values ​​deeper than one level haven't really been tested very intensively.
 
 Place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
 ```
 	<h1 t="tool name"></h1>
 ```
-Inline attributes for long phrases with placeholders or even recursive keys can be complex. The best practice is to retrieve the translation via scripting, including the attributes. You do this by appending the ```ddLocale.t()``` function with an additional option ```true```. You will then receive an array containing two strings. The ```first``` string is the full ```attribute string```, and the ```second``` is the ```result```. Next you can fill the DOM-element.
+Inline attributes for long phrases with placeholders or even recursive keys can be complex. The best practice is to retrieve the translation via scripting, including the attributes. You do this by appending the ```ddLocale.t()``` function with an additional option ```true```. You will then receive an array with two values. The first is simply the ```result``` of the translation. The second value is an ```object``` containing all the necessary attribute names and their values. This allows you to provide the DOM element in question with attributes. With the option ```usePrototypes: true```, the JavaScript ```Element``` is extended with the ```setAttributes()``` function, which can be fed with the returned ```object```.
 ```
 	let toolname = ddLocale.t("tool name"); -> "ddLocale"
-	let toolnameAndAttributes = ddLocale.t("tool name", true); -> ["t=\"tool name\"", "ddLocale"];
-	<h1 t="tool name">ddLocale</h1>
+	let toolnameAndAttributes = ddLocale.t("tool name", true); -> ["ddLocale", { t:"tool name" }];
+	<h1 id="header"></h1>
+	let h1 = document.getElementById('header');
+	h1.innerHTML = toolnameAndAttributes[0];
+	h1.setAttributes(toolnameAndAttributes[1]);
+	<h1 id="header" t="tool name">ddLocale</h1>
 ```
-If the inline ```key``` has ```placeholders``` the corrresponding values must be present in ```data-t+*``` attributes, where ```*``` is a corresponding ```placeholders```.
+If the inline ```key``` has ```placeholders``` the corrresponding values must be present in ```data-t_*``` attributes, where ```*``` is a corresponding ```placeholders```.
 > It is important to use only **lowercase** letters for placeholder ```names```, because the standard ```data-*``` attributes used for inline data storage do not support uppercase letters!
 ```
-	<h1 t="hello" data-t+name="Master" data-t+lastname="Mek"></h1>
+	<h1 t="hello" data-t_name="Master" data-t_lastname="Mek"></h1>
 ```
-If the inline ```placeholders``` are themselves a ```key```, you must specify an additional attribute by adding the placeholder ```names``` in the names attribute with a ```+``` sign.
+If the inline ```placeholders``` are themselves a ```key```, you must specify an additional attribute by adding the placeholder ```names``` in the names attribute with an underscore ```_```.
 ```
-	<h1 t="hi" data-t+fullname="fullname" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></h1>
+	<h1 t="hi" data-t_fullname="fullname" data-t_fullname_firstname="Benicio" data-t_fullname_middlename="del" data-t_fullname_lastname="Toro"></h1>
 ```
 Of course this also works with numbered placeholders.
 ```
-	<span t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></span>
+	<span t="exit.goodbye" data-t_0="Benicio" data-t_1="del" data-t_2="Toro"></span>
 ```
-Dates must be passed as ```timestamps```. Because timestamps are just numbers, you need to tell ```ddLocale``` what kind of number it is with ```binders```. This is done with an additional attribute with the same attribute ```name```, appended with an additional ```+``` sign.
+Dates must be passed as ```timestamps```. Because timestamps are just numbers, you need to tell ```ddLocale``` what kind of number it is with ```binders```. This is done with an additional attribute with the same attribute ```name```, appended with an additional ```_``` sign.
 - ```Date``` binders start with a ```d``` or ```date``` for that matter, optionally followed by a ```|``` and the date option ```name``` from ```stringFormats```.
 - ```Number``` binders start with a ```n```, ```num``` or ```number```, optionally followed by a ```|``` and the number option ```name``` from ```stringFormats```.
 ```
-	<div t="1760565600000" data-t+="date"></div>
-	<div t="176056.45" data-t+="num|eur"></div>
-	<div t="ordinalTest" data-t+0="12542334567" data-t+1="1345236" data-t+2="1536000" data-t+0+="n|ordinalWord" data-t+1+="n|ordinalSuffix" data-t+2+="n|bytes"></div> 
+	<div t="1760565600000" data-t_="date"></div>
+	<div t="176056.45" data-t_="num|eur"></div>
+	<div t="ordinalTest" data-t_0="12542334567" data-t_1="1345236" data-t_2="1536000" data-t_0_="n|ordinalWord" data-t_1_="n|ordinalSuffix" data-t_2_="n|bytes"></div> 
 ```
 Because inline translations are recursive, the result of a placeholder translation cannot be an existing ```key```. To prevent the translation from being incorrectly translated further, you can explicitly pass the placeholder as a string.
 - ```String``` binders start with a ```s```, ```str``` or ```string```.
 ```
-	<div t="bitcoins" data-t+0="1760565600000" data-t+0+="d|shortDate" data-t+1="2.56" data-t+1+="num" data-t+2="bitcoins" data-t+2+="s" data-t+3="244069.222" data-t+3+="n|eur"></div>
+	<div t="bitcoins" data-t_0="1760565600000" data-t_0_="d|shortDate" data-t_1="2.56" data-t_1_="num" data-t_2="bitcoins" data-t_2_="s" data-t_3="244069.222" data-t_3_="n|eur"></div>
 ```
-For pluralisation you can pass a number-string in the + aatribute.
+For pluralisation you can pass a number-string in the ```_``` attribute.
 ```
-	<div t="plurals" data-t+0="100" data-t+0+="n|ordinalWord" data-t+1="man" data-t+1+="100" data-t+2="bird"></div>
+	<div t="plurals" data-t_0="100" data-t_0_="n|ordinalWord" data-t_1="man" data-t_1_="100" data-t_2="bird"></div>
 ```
 
 
