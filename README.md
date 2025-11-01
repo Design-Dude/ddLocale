@@ -320,8 +320,7 @@ Inline attributes for long phrases with placeholders or even recursive keys can 
 	let toolnameAndAttributes = ddLocale.t("tool name", true); → ["ddLocale", { t:"tool name" }];
 	<h1 id="header"></h1>
 	let h1 = document.getElementById('header');
-	h1.innerHTML = toolnameAndAttributes[0];
-	h1.setAttributes(toolnameAndAttributes[1]);
+	h1.setAttributes(toolnameAndAttributes[1]).innerHTML = toolnameAndAttributes[0];
 	→ <h1 id="header" t="tool name">ddLocale</h1>
 ```
 If the inline ```key``` has ```placeholders``` the corrresponding values must be present in ```data-t_*``` attributes, where ```*``` is a corresponding ```placeholders```.
