@@ -95,7 +95,7 @@ This example includes all the option available:
 			ordinalSuffix: { format: "suffix", gender: "f" },
 			bytes: { format: "bytes" }
 		},
-		inline: false, // optional, default true
+		autoInline: false, // optional, default true, start inline translation after load
 		ordinalRules: false, // optional, default false
 		log: false, // optional, default true
 		nocache: false, // if true language files will be loaded using timestamps
@@ -154,8 +154,8 @@ stringFormats: { // your collection of options
 }
 ```
 
-### inline
-By default all elements with ```t``` attribute will be translatesd after load. If you don't want that you can set  ```inline: false```.
+### autoInline
+By default all elements with ```t``` attribute will be translatesd after load. If you don't want that you can set  ```autoInline: false```.
 
 ### ordinalRules
 With ```ordinalRules: true```, ```ddLocale``` attempts to add additional rules for ordinal numbers. They describe adjustments for numerical values (```1```→```1st```) ​​according to local rules.
@@ -309,6 +309,7 @@ In normal use, these extensions are ignored. By sending a number, you can test w
 
 Static elements can be translatable too.
 > The inline solution is more or less recursive, as long as the necessary placeholders are defined! Recursive values ​​deeper than one level haven't really been tested very intensively.
+> With ```autoInline: true``` (default all inline ```t``` attributew will be translated automatically. You can force the inline translations with ```ddLocale.html()``` for the entire document or ```ddLocale.html(domId)``` for partial translations. All ```t``` attributes with de element with ```id=domid``` will be checked.
 
 Place the ```key``` inside a ```t``` attribute and ```ddLocale``` will place the translation in the ```innerHTML```.
 ```
