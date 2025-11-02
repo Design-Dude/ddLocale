@@ -10,35 +10,38 @@
 
 	</head>
 	<body>
-		<div id="language"></div>
-		<br/><br/><br/><br/>
-		<div t="seeLog"></div>
-		<div t="seeWeb"></div>
-		<br/>——————
+		<div id="test">
+			<div id="language"></div>
+			<br/><br/><br/><br/>
+			<div t="seeLog"></div>
+			<div t="seeWeb"></div>
+			<br/>——————
+		</div>
 		<ol>
-			<li nr="2" t="hello" data-t+name="Benicio" data-t+lastname="Toro, del"></li>
-			<li nr="2" t="hi" data-t+fullname="fullname" data-t+fullname+firstname="Benicio" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></li>
-			<li nr="2" t="hi" data-t+fullname="fullname" data-t+fullname+firstname="Mek" data-t+fullname+lastname="Yo"></li>
+			<li nr="2" t="hello" data-t_name="Benicio" data-t_lastname="Toro, del"></li>
+			<li nr="2" t="hi" data-t_fullname="fullname" data-t_fullname_firstname="Benicio" data-t_fullname_middlename="del" data-t_fullname_lastname="Toro"></li>
+			<li nr="2" t="hi" data-t_fullname="fullname" data-t_fullname_firstname="Mek" data-t_fullname_lastname="Yo"></li>
 
-			<li nr="2" t="exit.goodbye" data-t+0="Benicio" data-t+1="del" data-t+2="Toro"></li>
-			<li t="ordinalTest" data-t+0="128" data-t+1="128" data-t+2="128" data-t+0+="n|ordinalWord" data-t+1+="n|ordinalSuffix" data-t+2+="n|bytes"></li>
-			<li t="ordinalTest" data-t+0="12542334567" data-t+1="1345236" data-t+2="1536000" data-t+0+="n|ordinalWord" data-t+1+="n|ordinalSuffix" data-t+2+="n|bytes"></li>
-			<li nr="1" t="plurals" data-t+0="1" data-t+0+="n|ordinalWord" data-t+1="man" data-t+1+="1" data-t+2="bird"></li>
-			<li nr="2" t="plurals" data-t+0="100" data-t+0+="n|ordinalWord" data-t+1="man" data-t+1+="100" data-t+2="bird"></li>
-			<li nr="2" t="129.95" data-t+="n|ordinalDecimalWord"></li>
-			<li t="176056.45" data-t+="num|eur"></li>
-			<li t="1760565600000" data-t+="date"></li>
+			<li nr="2" t="exit.goodbye" data-t_0="Benicio" data-t_1="del" data-t_2="Toro"></li>
+			<li t="ordinalTest" data-t_0="128" data-t_1="128" data-t_2="128" data-t_0_="n|ordinalWord" data-t_1_="n|ordinalSuffix" data-t_2_="n|bytes"></li>
+			<li t="ordinalTest" data-t_0="12542334567" data-t_1="1345236" data-t_2="1536000" data-t_0_="n|ordinalWord" data-t_1_="n|ordinalSuffix" data-t_2_="n|bytes"></li>
+			<li nr="1" t="plurals" data-t_0="1" data-t_0_="n|ordinalWord" data-t_1="man" data-t_1_="1" data-t_2="bird"></li>
+			<li nr="2" t="plurals" data-t_0="100" data-t_0_="n|ordinalWord" data-t_1="man" data-t_1_="100" data-t_2="bird"></li>
+			<li nr="2" t="129.95" data-t_="n|ordinalDecimalWord"></li>
+			<li t="176056.45" data-t_="num|eur"></li>
+			<li t="1760565600000" data-t_="date"></li>
 
-			<li t="bitcoins" data-t+0="1760565600000" data-t+0+="d|shortDate" data-t+1="2.56" data-t+1+="num" data-t+2="bitcoins" data-t+2+="s" data-t+3="244069.222" data-t+3+="n|eur"></li>
-			<li t="my name is" data-t+fullname="fullname" data-t+fullname+first="Me" data-t+fullname+middlename="del" data-t+fullname+lastname="Toro"></li>
+			<li t="bitcoins" data-t_0="1760565600000" data-t_0_="d|shortDate" data-t_1="2.56" data-t_1_="num" data-t_2="bitcoins" data-t_2_="s" data-t_3="244069.222" data-t_3_="n|eur"></li>
+			<li t="my name is" data-t_fullname="fullname" data-t_fullname_first="Me" data-t_fullname_middlename="del" data-t_fullname_lastname="Toro"></li>
 
 
-			<li t="129.88" data-t+="n|ordinal"></li>
-			<li t="1760565600000" data-t+="d|shortDate"></li>
-			<li t="man" data-t+="0"></li>
-			<li t="man" data-t+="1"></li>
-			<li t="man" data-t+="100"></li>
-			<li t="the door is" data-t+0="closed"></li>
+			<li t="129.88" data-t_="n|ordinal"></li>
+			<li t="1760565600000" data-t_="d|shortDate"></li>
+			<li t="man" data-t_="0"></li>
+			<li t="man" data-t_="1"></li>
+			<li t="man" data-t_="100"></li>
+			<li t="the door is" data-t_0="closed"></li>
+			<li id="lastEntry"></li>
 		</ol>
 	</body>
 </html>

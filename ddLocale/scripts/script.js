@@ -35,7 +35,7 @@ function app_init() {
 			autoClose: 200 // delay in ms
 		},
 		ordinalRules: true,
-		inline: true,
+		autoInline: true,
 		minified: true,
 		cultures: [
 			{
@@ -193,8 +193,14 @@ function app_ready() {
 	console.log(37, ddLocale.t("bitcoins", {0:1760620872050, 1:2.58, 2:'bitcoin', 3:(2.58*95339.54)}, { 0:'d|shortDate', 1:'n', 2: 2.58, 3:'n|eur' }));
 	console.log(38, "bitcoins".t([new Date(), 1, 'bitcoin', (1*95339.54)], ['date|shortDate', 'number', 1, 'num|eur']));
 	console.log(39, "ordinalTest".t({ 0: 12542334567, 1: 1, 2: 1536000 }, { 0: 'n|ordinalWord', 1: 'n|ordinal', 2: 'n|bytes' }));
-	console.log(40, "hi".t({ fullname: 'fullname' }, { fullname: {firstname: 'Benicio', middlename: 'del', lastname: 'Toro'} }));
-	console.log(41, "hi".t({ fullname: 'fullname' }, { fullname: {firstname: 'Benicio', middlename: 'del', lastname: 'Toro'} }, true));
+	console.log(40, "hi".t({ fullname: 'fullname' }, { fullname: { firstname: 'Benicio', middlename: 'del', lastname: 'Toro' } }));
+	
+	let getTranslation = "hi".t({ fullname: 'fullname' }, { fullname: { firstname: 'Benicio', middlename: 'del', lastname: 'Toro' } }, true);
+	console.log(41, getTranslation);
+	let lastEntry = document.getElementById('lastEntry');
+	if (lastEntry) {
+		lastEntry.setAttributes(getTranslation[1]).innerHTML = getTranslation[0];
+	}
 	
 	console.log("--------------");
 	console.log("/* ATTRIBUTES */");

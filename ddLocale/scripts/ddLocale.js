@@ -46,8 +46,9 @@ window.ddLocale = {
 			}
 		}
 	},
-	html: function() {
-		document.querySelectorAll("[t]").forEach((element) => {
+	html: function (id = false) {
+		let target = id ? document.getElementById(id) : document;
+		target.querySelectorAll("[t]").forEach((element) => {
 			let str = element.getAttribute('t');
 			let dataset = [{
 				trigger: 't',
@@ -93,9 +94,9 @@ window.ddLocale = {
 						for (let ds in dataset) {
 							let testTrigger = dataset[ds].trigger;
 							if (testTrigger.indexOf(dataset[d].trigger) > -1) {
-								if (testTrigger !== dataset[d].trigger && testTrigger !== dataset[d].trigger + '+') {
-									if (dataset[d].trigger.split('+').length === testTrigger.split('+').length - 1) {
-										let splitter = dataset[ds].trigger.split('+');
+								if (testTrigger !== dataset[d].trigger && testTrigger !== dataset[d].trigger + '_') {
+									if (dataset[d].trigger.split('_').length === testTrigger.split('_').length - 1) {
+										let splitter = dataset[ds].trigger.split('_');
 										splitter = splitter[splitter.length - 1];
 										options[splitter] = dataset[ds].key;
 									}
@@ -160,6 +161,14 @@ window.ddLocale = {
 									return this.toLocaleString();
 								};
 							}
+							if (typeof Element.prototype.setAttributes !== "function") {
+								Element.prototype.setAttributes = function(attrs) {
+									for (const [key, value] of Object.entries(attrs)) {
+										this.setAttribute(key, value);
+									}
+									return this;
+							  	};
+							}
 						}
 						this.version();
 						this.success();
@@ -217,7 +226,7 @@ window.ddLocale = {
 			culture: this.culture,
 			title: this.cultures.filter(obj => obj.culture === this.culture)[0].title
 		});
-		if(this.inline) this.html(this);
+		if(this.autoInline) this.html();
 		this.setButton();
 	},
 	set: function (options) {
@@ -243,7 +252,7 @@ window.ddLocale = {
 		this.log = options.log ? options.log : typeof(this.log) == 'undefined' ? true : this.log;
 		this.cultures = typeof(options.cultures) !== 'undefined' ? options.cultures : this.cultures ? this.cultures : false;
 		this.ordinalRules = typeof(options.ordinalRules) !== 'undefined' ? options.ordinalRules : this.ordinalRules ? this.ordinalRules : false;
-		this.inline = typeof(options.inline) !== 'undefined' ? options.inline :  typeof(this.inline) !== 'undefined' ? this.inline : true;
+		this.autoInline = typeof(options.autoInline) !== 'undefined' ? options.autoInline :  typeof(this.autoInline) !== 'undefined' ? this.autoInline : true;
 
 		if (options.menu) this.menu = options.menu;
 
@@ -263,6 +272,9 @@ window.ddLocale = {
 			if(isOpen) button.classList.add('open');
 			let link = document.createElement('a');
 			link.setAttribute('id', this.menu.domId + '-menu-button');
+			link.setAttribute('href', 'javascript:void(0)');
+			link.setAttribute('aria-label', 'language menu');
+			link.setAttribute('aria-haspopup', 'menu');
 			let short = this.culture.split('-');
 			if (this.menu.button === 'long') {
 				link.innerHTML = this.cultures.filter(obj => obj.culture === this.culture)[0].title;
@@ -306,9 +318,13 @@ window.ddLocale = {
 			menu.setAttribute('id', this.menu.domId + '-menu-container');
 			for (let c in this.cultures) {
 				let link = document.createElement('a');
+				link.setAttribute('href', 'javascript:void(0)');
 				link.addEventListener('click', (e) => this.clickItem(e));
 				link.innerHTML = this.cultures[c].title;
-				if(this.cultures[c].culture === this.culture) link.classList.add('selected');
+				if (this.cultures[c].culture === this.culture) {
+					link.classList.add('selected');
+					link.setAttribute('aria-current', 'language');
+				}
 				link.setAttribute('culture', this.cultures[c].culture);
 				link.innerHTML = this.cultures[c].title;
 				menu.appendChild(link);
@@ -391,7 +407,7 @@ window.ddLocale = {
 			ePlural = true;
 		}
 		if (eAttr) {
-			eAttr = typeof args['eAttr'] === 'string' ? [] : ['t="' + key + '"'];
+			eAttr = typeof args['eAttr'] === 'string' ? {} : { t: key };
 		}
 		
 		if(Object.keys(args).length) {
@@ -408,8 +424,8 @@ window.ddLocale = {
 							}
 							if (eAttr) {
 								if (value instanceof Date) value = value.getTime();
-								eAttr.push('data-t+' + parent + key + '="' + value + '"');
-								if(typeof short !== 'object') eAttr.push('data-t+' + parent + key + '+="' + short + '"');
+								eAttr['data-t_' + parent + key] = value;
+								if(typeof short !== 'object') eAttr['data-t_' + parent + key + '_'] = short;
 							}
 							if (short || short === 0) {
 								if (typeof short == 'number') {
@@ -436,12 +452,12 @@ window.ddLocale = {
 								} else if (typeof short == 'string' && short.indexOf('s') !== -1) {
 									//
 								} else if (typeof short == 'object') {
-									if(eAttr) {
-										short['eAttr'] = key + '+';
+									if (eAttr) {
+
+										short['eAttr'] = key + '_';
 										let tempVal = this.t(value, short, true);
-										value = tempVal[1];
-										tempVal = tempVal[0].split('data-t');
-										for(let i=1; i<tempVal.length; i++) eAttr.push('data-t' + tempVal[i].trim());
+										value = tempVal[0];
+										for(let i in tempVal[1]) eAttr[i] = tempVal[1][i];
 									} else {
 										value = this.t(value, short);
 									}
@@ -461,15 +477,15 @@ window.ddLocale = {
 					if(!value) value = args[k];
 
 					if(args['aAttr'] === true) value = args[k];
-					if (!ePlural && eAttr) eAttr.push('data-t+' + parent + k + '="' + args[k] + '"');
-					else if (ePlural && eAttr) eAttr.push('data-t+="' + parent + args[k] + '"');
+					if (!ePlural && eAttr) eAttr['data-t_' + parent + k] = args[k];
+					else if (ePlural && eAttr) eAttr['data-t_'] = parent + args[k];
 					str = str.replaceAll("\{"+k+"\}", value);
 				}
 			}
 		}
 		if (this.replacement) str = str.replaceAll(/{(\w+)}/ig, this.replacement);
 		str = str.replace(/(\ ){2,}/, ' ');
-		if(eAttr) return [eAttr.join(' '), str]
+		if (eAttr) return [str, eAttr];
 		return str;
 	},
 	doPlural: function (str, value) {
@@ -522,12 +538,12 @@ window.ddLocale = {
 		if (typeof ddOrdinals === 'function' && typeof obj === 'number' && typeof options === 'object' && typeof options.format === 'string') {
 			if (options.format === 'bytes') {
 				let result = this.bytesToString(obj, options);
-				if(options.eAttr) return [`t="${obj}" data-t+="n${oOptions}"`, result];
+				if (options.eAttr) return [result, { t: obj, 'data-t_': 'n'+oOptions }];
 				return result;
 			} else {
 				const p = ddOrdinals(this.culture, { type: 'ordinal'});
 				let result = p.format(obj, options);
-				if(options.eAttr) return [`t="${obj}" data-t+="n${oOptions}"`, result];
+				if (options.eAttr) return [result, { t: obj, 'data-t_': 'n'+oOptions }];
 				return result;
 			}
 		}
@@ -535,10 +551,10 @@ window.ddLocale = {
 		if (typeof obj === 'number' && (options.day || options.weekday || options.year || options.month || options.hour || options.minute || options.second)) {
 			obj = new Date(obj);
 			result = obj.toLocaleString(this.culture, options);
-			if (options.eAttr) return [`t="${obj.getTime()}" data-t+="d${oOptions}"`, result];
+			if (options.eAttr) return [result, { t: obj.getTime(), 'data-t_': 'd'+oOptions }];
 		} else if (options.eAttr) {
 			if (obj instanceof Date) obj = obj.getTime();
-			return [`t="${obj}" data-t+="n${oOptions}"`, result];
+			return [result, { t: obj, 'data-t_': 'n'+oOptions }];
 		}
 		return result;
 	}
