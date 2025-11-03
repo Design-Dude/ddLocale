@@ -176,8 +176,8 @@ window.ddLocale = {
 					}
 					if(this.log) console.log('Language installed (' + this.culture + ')');
 					let ordinalName = this.culture;
-					let ordinalPath = this.path + 'ordinalRules/' + ordinalName + (this.minified ? ".min" : "") + ".js";
 					if (this.ordinalRules) {
+						let ordinalPath = this.path + (typeof this.ordinalRules === 'string' ? this.ordinalRules : 'ordinalRules/') + ordinalName + (this.minified ? ".min" : "") + ".js";
 						this.loadOrdinalRules(ordinalPath, ordinalName, (error) => {
 							if (this.log) console.warn('Failed loading ordinal rules (' + ordinalName + ')');
 							if (ordinalName != this.language) {
