@@ -96,7 +96,7 @@ This example includes all the option available:
 			bytes: { format: "bytes" }
 		},
 		autoInline: false, // optional, default true, start inline translation after load
-		ordinalRules: false, // optional, default false
+		ordinalRules: false, // optional, default false, true or path-string
 		log: false, // optional, default true
 		nocache: false, // if true language files will be loaded using timestamps
 		minified: true, // default false, load minified ordinal scripts (i.e. en.min.js)
@@ -117,7 +117,7 @@ Define a list of ```cultures``` to let ddLocale know which languages are availab
 **direction:** optional ```"ltr"``` or ```"rtl"```. If available the ```direction``` will be set as style and attribute to the ```body```.
 
 ### path
-If your JSON-language files are not in a ```./lang/``` folder you can specify the new path. Just leave out ```./``` and ```/```.
+If your JSON-language files are not in a ```./languages/``` folder you can specify the new path. Just leave out ```./``` but include ```/``` at the end.
 
 ### language, country and culture
 ```language``` and ```country``` define ```culture```. Make sure that ```culture``` matches one of ```cultures``` objects.
@@ -158,8 +158,7 @@ stringFormats: { // your collection of options
 By default all elements with ```t``` attribute will be translatesd after load. If you don't want that you can set  ```autoInline: false```.
 
 ### ordinalRules
-With ```ordinalRules: true```, ```ddLocale``` attempts to add additional rules for ordinal numbers. They describe adjustments for numerical values (```1```→```1st```) ​​according to local rules.
-The available scripts can be found in the ```languages/ordinalRules/``` folder.
+With ```ordinalRules: true```, ```ddLocale``` attempts to add additional rules for ordinal numbers. They describe adjustments for numerical values (```1```→```1st```) ​​according to local rules. The available scripts should be placed in the ```{path/}ordinalRules/``` folder. Or, if ```ordinalRules``` is a ```string-path``` ```ddLocale will look in ```{path/}{ordinalRules/}```. As you can see, both ```path``` and ```ordinalRules``` should include the ```/``` at the end.
 
 
 ```ddLocale``` always attempts to load ```culture```.js. If it's not available, a second attempt is made with ```country```.js. If ```ordinalRules``` is not found, it is disabled for the selected language.
