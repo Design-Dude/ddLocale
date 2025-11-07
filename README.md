@@ -323,6 +323,11 @@ Inline attributes for long phrases with placeholders or even recursive keys can 
 	h1.setAttributes(toolnameAndAttributes[1]).innerHTML = toolnameAndAttributes[0];
 	→ <h1 id="header" t="tool name">ddLocale</h1>
 ```
+There is now also a shorter method. Use ```ddLocale.setAttributes('key', element|'elementId');```. This function will place all the necessary attributes in ```element``` or the object with ```elementId``` and return the translation value.
+```
+	headerTitle.innerHTML = ddLocale.setAttributes(title, headerTitle);
+```
+
 If the inline ```key``` has ```placeholders``` the corrresponding values must be present in ```data-t_*``` attributes, where ```*``` is a corresponding ```placeholders```.
 > It is important to use only **lowercase** letters for placeholder ```names```, because the standard ```data-*``` attributes used for inline data storage do not support uppercase letters!
 ```
