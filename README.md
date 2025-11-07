@@ -492,9 +492,7 @@ body[direction=rtl] #language-menu-container.left {
 }
 ```
 
-## ——————
-
-If you like ```ddLocale``` you may consider [buying me a coffee](https://www.buymeacoffee.com/Mastermek).
+## If you like ```ddLocale``` you may consider [buying me a coffee](https://www.buymeacoffee.com/Mastermek).
 
 [![Screenshot](repository_images/coffee.svg)](https://www.buymeacoffee.com/Mastermek)
 
