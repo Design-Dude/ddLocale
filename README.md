@@ -492,11 +492,7 @@ body[direction=rtl] #language-menu-container.left {
 }
 ```
 
-## Whishlist
-
-- [ ] Active placeholder expressions in static inline attributes...
-
-
+## ——————
 
 If you like ```ddLocale``` you may consider [buying me a coffee](https://www.buymeacoffee.com/Mastermek).
 
