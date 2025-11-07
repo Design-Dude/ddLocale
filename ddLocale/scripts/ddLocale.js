@@ -49,67 +49,79 @@ window.ddLocale = {
 	html: function (id = false) {
 		let target = id ? document.getElementById(id) : document;
 		target.querySelectorAll("[t]").forEach((element) => {
-			let str = element.getAttribute('t');
-			let dataset = [{
-				trigger: 't',
-				key: str
-			}];
-			for (let ed in element.dataset) {
-				dataset.push({
-					trigger: ed,
-					key: element.dataset[ed]
-				});
-			}
-			if (dataset.length) dataset.sort(ddLocale.sorter);
-			for (let d in dataset) {
-				if (dataset[d].trigger.slice(-1) !== '+') {
-					let short = dataset.find(o => o.trigger === dataset[d].trigger + '+');
-					short = short ? short.key : false;
-					if (short) {
-						let teststr = this.map.get(dataset[d].key);
-						if (short.indexOf('s') === 0) {
-						} else {
-							teststr = this.map.get(dataset[d].key);
-						}
-						if (typeof teststr === 'string' && teststr.indexOf('->') > 0) {
-							short = parseFloat(short);
-							short = isNaN(short) ? -1 : Math.ceil(short);
-							dataset[d].key = this.doPlural(teststr, short);
-						} else if (short.indexOf('d') === 0) {
-							try {
-								short = short.split('|');
-								let options = short.length == 2 ? short[1] : {};
-								let num = parseFloat(dataset[d].key);
-								dataset[d].key = this.toString(new Date(num), options);
-							} catch (error) {
-							}
-						} else if (short.indexOf('n') === 0) {
+            let str = this._html(element)
+			element.innerHTML = str;
+            if(element.getAttribute('t-title') === '') element.setAttribute('title', str);
+        });
+		target.querySelectorAll("[t-title]").forEach((element) => {
+            let tVal = element.getAttribute('t-title');
+            if(tVal !==  null && tVal !== '') {
+                let str = this.split(tVal);
+                element.setAttribute('title', str);
+            }
+        });
+	},
+	_html: function (element) {
+		let str = element.getAttribute('t');
+		let dataset = [{
+			trigger: 't',
+			key: str
+		}];
+		for (let ed in element.dataset) {
+			dataset.push({
+				trigger: ed,
+				key: element.dataset[ed]
+			});
+		}
+		if (dataset.length) dataset.sort(ddLocale.sorter);
+		for (let d in dataset) {
+			if (dataset[d].trigger.slice(-1) !== '+') {
+				let short = dataset.find(o => o.trigger === dataset[d].trigger + '+');
+				short = short ? short.key : false;
+				if (short) {
+					let teststr = this.map.get(dataset[d].key);
+					if (short.indexOf('s') === 0) {
+					} else {
+						teststr = this.map.get(dataset[d].key);
+					}
+					if (typeof teststr === 'string' && teststr.indexOf('->') > 0) {
+						short = parseFloat(short);
+						short = isNaN(short) ? -1 : Math.ceil(short);
+						dataset[d].key = this.doPlural(teststr, short);
+					} else if (short.indexOf('d') === 0) {
+						try {
 							short = short.split('|');
 							let options = short.length == 2 ? short[1] : {};
 							let num = parseFloat(dataset[d].key);
-							dataset[d].key = this.toString(num, options);
+							dataset[d].key = this.toString(new Date(num), options);
+						} catch (error) {
 						}
-					} else {
-						let options = {}
-						for (let ds in dataset) {
-							let testTrigger = dataset[ds].trigger;
-							if (testTrigger.indexOf(dataset[d].trigger) > -1) {
-								if (testTrigger !== dataset[d].trigger && testTrigger !== dataset[d].trigger + '_') {
-									if (dataset[d].trigger.split('_').length === testTrigger.split('_').length - 1) {
-										let splitter = dataset[ds].trigger.split('_');
-										splitter = splitter[splitter.length - 1];
-										options[splitter] = dataset[ds].key;
-									}
+					} else if (short.indexOf('n') === 0) {
+						short = short.split('|');
+						let options = short.length == 2 ? short[1] : {};
+						let num = parseFloat(dataset[d].key);
+						dataset[d].key = this.toString(num, options);
+					}
+				} else {
+					let options = {}
+					for (let ds in dataset) {
+						let testTrigger = dataset[ds].trigger;
+						if (testTrigger.indexOf(dataset[d].trigger) > -1) {
+							if (testTrigger !== dataset[d].trigger && testTrigger !== dataset[d].trigger + '_') {
+								if (dataset[d].trigger.split('_').length === testTrigger.split('_').length - 1) {
+									let splitter = dataset[ds].trigger.split('_');
+									splitter = splitter[splitter.length - 1];
+									options[splitter] = dataset[ds].key;
 								}
 							}
 						}
-						options['aAttr'] = true;
-						dataset[d].key = ddLocale.t(dataset[d].key, options);
 					}
+					options['aAttr'] = true;
+					dataset[d].key = ddLocale.t(dataset[d].key, options);
 				}
 			}
-			element.innerHTML = dataset.find(o => o.trigger === 't').key;
-		});
+		}
+		return dataset.find(o => o.trigger === 't').key;
 	},
 	init: function(options) {
 		this.set(options);
@@ -265,6 +277,12 @@ window.ddLocale = {
 		this.usePrototypes = typeof(options.usePrototypes) !== 'undefined' ? options.usePrototypes : this.usePrototypes ? this.usePrototypes : false;
 		this.timer = false;
 	},
+    setAttributes: function(key, object) {
+        if(object && typeof object === 'string') object = document.getElementById(object);
+        let s = this.t(key, true);
+        if(object) object.setAttributes(s[1]);
+        return s[0];
+    },
 	setButton: function(isOpen = false) {
 		if (this.menu && this.menu.domId && typeof(this.menu.button) === 'string') {
 			let button = document.getElementById(this.menu.domId);
@@ -351,7 +369,28 @@ window.ddLocale = {
 		return 0;
 	},
 	split: function(key) {
-		return key.split(/\.(?=[a-zA-Z0-9])/);
+		let str;
+		let keys = key.split(/\.(?=[a-zA-Z0-9])/);
+        if(keys.length == 1) {
+			str = this.map.get(key) && this.map.get(key) != "" ? this.map.get(key) : key;
+			if(typeof(str) != 'string') str = key;
+		} else {
+			str = this.map.get(keys[0]);
+			if(typeof(str) == 'object') {
+				for(let k in keys) {
+					if(k != 0) {
+						str = str[keys[k]];
+						if(typeof(str) == 'undefined' || str === '') {
+							str = str === '' ? keys[k] : key;
+							break;
+						}
+					}
+				}
+			} else {
+				str = key;
+			}
+		}
+        return str;
 	},
 	t: function (key, ...args) {
 
@@ -379,28 +418,8 @@ window.ddLocale = {
 		}
 		args = args.length ? args[0] : args;
 
-		let str;
-		let keys = this.split(key);
-
-		if(keys.length == 1) {
-			str = this.map.get(key) && this.map.get(key) != "" ? this.map.get(key) : key;
-			if(typeof(str) != 'string') str = key;
-		} else {
-			str = this.map.get(keys[0]);
-			if(typeof(str) == 'object') {
-				for(let k in keys) {
-					if(k != 0) {
-						str = str[keys[k]];
-						if(typeof(str) == 'undefined' || str === '') {
-							str = str === '' ? keys[k] : key;
-							break;
-						}
-					}
-				}
-			} else {
-				str = key;
-			}
-		}
+		let str = this.split(key);
+		
 		if (str.indexOf('->=') > -1 || str.indexOf('->+') > -1 || str.indexOf('->-') > -1) {
 			let testval = typeof args[0] == 'number' ? Math.ceil(args[0]) : -1;
 			str = this.doPlural(str, testval);
