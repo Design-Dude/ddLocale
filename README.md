@@ -196,7 +196,7 @@ Language files are json files. Make sure the ```culture``` matches the JSON lang
 		"ordinalTest": "Word: {0}, ordinal: {2}, bytes: {3}",
 		"plurals": "{0} {1} and a {2}.",
 		"tool name": "ddLocale",
-
+		"currentdate": "Current date"
 	}
 ```
 
@@ -369,6 +369,20 @@ For dates, the static representation must be a timestamp ```new Date().getTime()
 ```
 	<div id="container">
 		<span t="1760565600000" data-t-date="shortDate"></span>
+	</div>
+```
+
+### Title-attributes
+After the ```t``` attribute is translated, if the element in question also contains an emtpy ```t-title``` attribute, the ```title``` will also be populated with the translation.
+```
+	<div id="container">
+		<span t="1760565600000" data-t-date="shortDate" t-title></span>
+	</div>
+```
+If the ```t-title``` attribute is not empty, it's value will be translated non-recursively and placed into the ```title``` attribute.
+```
+	<div id="container">
+		<span t="1760565600000" data-t-date="shortDate" t-title="currentdate"></span>
 	</div>
 ```
 
