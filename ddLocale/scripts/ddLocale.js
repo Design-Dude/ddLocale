@@ -14,7 +14,7 @@ window.ddLocale = {
 		return `${value.toLocaleString(this.culture)} ${sizes[i]}`;
 	},
 	clickButton: function(e) {
-		if (typeof (this.menu) === 'undefined') {
+		if (this.menu.toggle) {
 			// toggle
 			let currentCulture = this.culture;
 			let newCulture = -1;
@@ -243,7 +243,6 @@ window.ddLocale = {
 		if(this.menu && this.menu.engine === 'ddMenu' && typeof ddMenu === 'function') {
 			this.menu.badge = 0;
 			this.menu.triggerIcon = 'icon-' + this.culture;
-			this.menu.iconPosition = 'left';
 			this.menu.selectable = true;
 			if(this.menu.items && this.menu.items.iconPosition) this.menu.itemIconPosition = this.menu.items.iconPosition;
 			this.menu.items = [];
@@ -302,13 +301,14 @@ window.ddLocale = {
 		if (typeof(this.loading) == 'undefined') this.loading = true;
 		this.stringFormats = options.stringFormats ? options.stringFormats : this.stringFormats ? this.stringFormats : {};
 		this.path = options.path ? options.path : this.path ? this.path : 'languages/';
-		this.replacement = options.replacement ? options.replacement : (this.replacement ? this.replacement : "__");
-		this.log = options.log ? options.log : typeof(this.log) == 'undefined' ? true : this.log;
+		this.replacement = typeof options.replacement !== 'undefined' ? options.replacement : (this.replacement ? this.replacement : "__");
+        this.log = typeof options.log !== 'undefined' ? options.log : typeof this.log !== 'undefined' ? this.log : true;
 		this.cultures = typeof(options.cultures) !== 'undefined' ? options.cultures : this.cultures ? this.cultures : false;
 		this.ordinalRules = typeof(options.ordinalRules) !== 'undefined' ? options.ordinalRules : this.ordinalRules ? this.ordinalRules : false;
 		this.autoInline = typeof(options.autoInline) !== 'undefined' ? options.autoInline :  typeof(this.autoInline) !== 'undefined' ? this.autoInline : true;
 
 		this.menu = options.menu ? options.menu : this.menu ? this.menu : false;
+		this.toggle = options.toggle ? options.toggle : this.toggle ? this.toggle : false;
 
 		if (options.ready) this.ready = options.ready;
 		if (options.failed) this.failed = options.failed;
@@ -658,6 +658,7 @@ window.ddLocale = {
 //         align: 'left',            // menu alignment
 //         autoOpen: 500,            // hover delay to open menu (ms)
 //         autoClose: 1000,          // hover delay to close menu (ms)
+//     	   toggle: true,			 // use toggle instead of built-in menu
 //         engine: 'ddMenu'          // optional menu engine integration
 //     },
 //     ready: (info) => { console.log('ddLocale ready', info); },
