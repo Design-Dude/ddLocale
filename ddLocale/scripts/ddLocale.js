@@ -1,5 +1,5 @@
 /*dd
-    Locale api, version 2.0
+    Locale api, version 2.1
 	Copywrite 2025, DesignDude
 */
 window.ddLocale = {
@@ -14,7 +14,8 @@ window.ddLocale = {
 		return `${value.toLocaleString(this.culture)} ${sizes[i]}`;
 	},
 	clickButton: function(e) {
-		if (typeof (this.menu.menu) === 'undefined') {
+		if (typeof (this.menu) === 'undefined') {
+			// toggle
 			let currentCulture = this.culture;
 			let newCulture = -1;
 			let firstCulture = false;
@@ -239,7 +240,48 @@ window.ddLocale = {
 			title: this.cultures.filter(obj => obj.culture === this.culture)[0].title
 		});
 		if(this.autoInline) this.html();
-		this.setButton();
+		if(this.menu && this.menu.engine === 'ddMenu' && typeof ddMenu === 'function') {
+			this.menu.badge = 0;
+			this.menu.triggerIcon = 'icon-' + this.culture;
+			this.menu.iconPosition = 'left';
+			this.menu.selectable = true;
+			if(this.menu.items && this.menu.items.iconPosition) this.menu.itemIconPosition = this.menu.items.iconPosition;
+			this.menu.items = [];
+			for (let c in this.cultures) {
+				let langObj = {
+					text: this.cultures[c].title,
+					title: this.cultures[c].title,
+					value: this.cultures[c].culture
+				}
+				if(this.menu.itemIconPosition) {
+					langObj.className = 'icon-' + this.cultures[c].culture;
+					langObj.iconPosition = this.menu.itemIconPosition;
+				}
+				if(this.cultures[c].culture === this.culture && this.menu.selectable) langObj.selected = true;
+				this.menu.items.push(langObj);
+			}
+			this.ddMenu = new ddMenu(this.menu);
+
+			if(this.ddMenu.options.updateTitleOnSelect) {
+				let targetLabel = this.ddMenu.trigger.querySelector('.ddmenu-label');
+				let short = this.culture.split('-');
+				let long = this.cultures.filter(obj => obj.culture === this.culture)[0].title;
+				if (this.ddMenu.options.text === 'long') {
+					targetLabel.innerHTML = long;
+					this.ddMenu.trigger.setAttribute('title', long);
+				} else if (this.ddMenu.options.text === 'short') {
+					targetLabel.innerHTML = short[short.length - 1].toUpperCase();
+					this.ddMenu.trigger.setAttribute('title', long);
+				} else if (typeof (this.ddMenu.options.text) === 'string') {
+					targetLabel.innerHTML = this.t(this.ddMenu.options.text);
+					if(this.ddMenu.options.title) this.ddMenu.trigger.setAttribute('title', this.t(this.ddMenu.options.title))
+					else this.ddMenu.trigger.setAttribute('title', long);
+				}
+			}
+
+		} else {
+			this.setButton();
+		}
 	},
 	set: function (options) {
 		if (options.culture) {
@@ -266,7 +308,7 @@ window.ddLocale = {
 		this.ordinalRules = typeof(options.ordinalRules) !== 'undefined' ? options.ordinalRules : this.ordinalRules ? this.ordinalRules : false;
 		this.autoInline = typeof(options.autoInline) !== 'undefined' ? options.autoInline :  typeof(this.autoInline) !== 'undefined' ? this.autoInline : true;
 
-		if (options.menu) this.menu = options.menu;
+		this.menu = options.menu ? options.menu : this.menu ? this.menu : false;
 
 		if (options.ready) this.ready = options.ready;
 		if (options.failed) this.failed = options.failed;
@@ -280,11 +322,18 @@ window.ddLocale = {
     setAttributes: function(key, object) {
         if(object && typeof object === 'string') object = document.getElementById(object);
         let s = this.t(key, true);
-        if(object) object.setAttributes(s[1]);
+        if (object) {
+            object.setAttributes(s[1]);
+            let tVal = object.getAttribute('t-title');
+            if (tVal !== null && tVal !== '') {
+                let str = this.split(tVal);
+                object.setAttribute('title', str);
+            }
+        }
         return s[0];
     },
 	setButton: function(isOpen = false) {
-		if (this.menu && this.menu.domId && typeof(this.menu.button) === 'string') {
+		if (this.menu && this.menu.domId && typeof(this.menu.text) === 'string') {
 			let button = document.getElementById(this.menu.domId);
 			button.setAttribute('culture', this.culture);
 			if(isOpen) button.classList.add('open');
@@ -294,12 +343,12 @@ window.ddLocale = {
 			link.setAttribute('aria-label', 'language menu');
 			link.setAttribute('aria-haspopup', 'menu');
 			let short = this.culture.split('-');
-			if (this.menu.button === 'long') {
+			if (this.menu.text === 'long') {
 				link.innerHTML = this.cultures.filter(obj => obj.culture === this.culture)[0].title;
-			} else if (this.menu.button === 'short') {
+			} else if (this.menu.text === 'short') {
 				link.innerHTML = short[short.length - 1].toUpperCase();
-			} else if (typeof (this.menu.button) === 'string') {
-				link.innerHTML = this.t(this.menu.button);
+			} else if (typeof (this.menu.text) === 'string') {
+				link.innerHTML = this.t(this.menu.text);
 			}
 			if (!link._binding) {
 				link._binding = true;
@@ -332,7 +381,7 @@ window.ddLocale = {
 		if (this.menu && this.menu.domId) {
 			let button = document.getElementById(this.menu.domId);
 			const menu = document.createElement('div');
-			menu.classList.add(this.menu.menu);
+			menu.classList.add(this.menu.align);
 			menu.setAttribute('id', this.menu.domId + '-menu-container');
 			for (let c in this.cultures) {
 				let link = document.createElement('a');
@@ -539,11 +588,11 @@ window.ddLocale = {
 	},
 	version: function () {
 		if (this.log) console.log('ddLocale translation library is now ready for use', {
-			buymeacoffee: "",
+			buymeacoffee: "https://buymeacoffee.com/mastermek",
 			copyright: "design-dude.nl",
-			git: "",
-			latest: "17/10/2025",
-			version: "2.0"
+			git: "https://github.com/Design-Dude/ddLocale",
+			latest: "11/11/2025",
+			version: "2.1"
 		});
 	},
 	toString: function (obj, options, attr = false) {
@@ -578,3 +627,41 @@ window.ddLocale = {
 		return result;
 	}
 };
+
+/*dd
+// Cheatsheet
+*/
+
+// ddLocale.init({
+//     culture: 'en-US',             // main locale/culture code
+//     language: 'en',               // language code (auto-derived from culture)
+//     country: 'US',                // optional country code
+//     path: 'languages/',           // path to JSON language files
+//     replacement: '__',            // placeholder for missing keys
+//     log: true,                    // enable logging
+//     cultures: [
+//         { culture: 'en-US', title: 'English (US)', direction: 'ltr' },
+//         { culture: 'fr-FR', title: 'Français', direction: 'ltr' },
+//         { culture: 'ar-SA', title: 'العربية', direction: 'rtl' }
+//     ],
+//     autoInline: true,             // automatically localize HTML elements
+//     stringFormats: {              // optional predefined formats for numbers/dates
+//         currency: { style: 'currency', currency: 'USD' },
+//         shortDate: { year: '2-digit', month: 'short', day: 'numeric' }
+//     },
+//     ordinalRules: 'ordinalRules/', // optional path for ordinal rules JS
+//     minified: true,               // if files are minified
+//     usePrototypes: true,          // add `.t()` to String, Number, Date for easy translations
+//     menu: {                       // optional language menu integration
+//         domId: 'langMenu',        // root element id
+//         text: 'short',            // 'short', 'long', or custom text
+//         align: 'left',            // menu alignment
+//         autoOpen: 500,            // hover delay to open menu (ms)
+//         autoClose: 1000,          // hover delay to close menu (ms)
+//         engine: 'ddMenu'          // optional menu engine integration
+//     },
+//     ready: (info) => { console.log('ddLocale ready', info); },
+//     success: () => { console.log('Loaded successfully'); },
+//     failed: () => { console.warn('Failed to load translations'); },
+//     nocache: false                 // bypass cache for JSON files
+// });
