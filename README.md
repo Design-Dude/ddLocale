@@ -1,18 +1,19 @@
 # ddLocale
-```ddLocale``` is a flexible and pretty easy to use JavaScript library for multilingual web apps and sites. It's similar to i18n, but without the clutter. It supports both script and inline translations for text, simplified plurals, (ordinal) numbers, and dates from nestable JSON sources. It also includes functionality for a fully customizable language menu.
+```ddLocale``` is a fairly easy-to-use, yet flexible, JavaScript library for multilingual web apps and sites. It's similar to i18n, but without (too many) clutter. It supports both script and inline translations for text, simplified plurals, (ordinal) numbers, and dates from nestable JSON sources. It also includes functionality for a fully customizable language menu.
 
 ## Features
 
 - [x] Just a simple yet comprehensive library with no dependencies.
 - [x] Nested language files for easy maintanance.
 - [x] Multiple syntax options, such as attributes, arrays, or objects.
-- [x] Extensive options for inline translation.
+- [x] Extensive inline translation options, including an easy-to-use tag maker.
 - [x] Supports language switching of static elements without reloading the page.
 - [x] Optionally extends the Javascript ```String```, ```Number```, ```Date``` and ```Element``` functionality.
 - [x] Support for Right To Left (RTL) languages.
 - [x] Support for simple word-by-word pluralization in the JSON language files.
 - [x] Optional support for ordinal numbers with supporting rules defined for each language in external scripts.
 - [x] Fully functional language menu with behavior settings (WCAG-compliant) and styling options.
+- [x] Optional use of the ```ddMenu``` library for seamless integration with other navigation menus with similar functionality and styling.
 - [x] Free (a coffee would be much appriciated).
 
 ## Installation
@@ -51,10 +52,12 @@ This example includes all the option available:
 		replacement: "__", // optional, default __
 		menu: {
 			domId: "language", // id of dom-node where language menu will be triggered
-			button: "", // "long" title, "short" language code or some translation "key"
-			menu: "center" // optional, className for the dropdown menu
+			text: "", // "long" title, "short" language code or some translation "key"
+			className: "center" // optional, className for the dropdown menu
 			autoOpen: 200, // delay in ms
 			autoClose: 200 // delay in ms (if used, must be long enough to reach the menu from the butten)
+			toggle: true // use toggle instead of built-in menu
+			engine: 'ddMenu', // optional, use ddMenu instead of built-in menu
 		},
 		ready: function (object) {
 			/*
@@ -128,12 +131,14 @@ The optional ```replacement``` character is used as a filler for non-found place
 ### menu
 **domId:** ```ddLocale``` only needs a ```DOM element``` with an ```id``` to place a button and a menu in.
 
-**button:** ```button``` determines the button text:
+**text:** ```button``` determines the button text:
 - ```"long"``` will place ```cultures[].title``` inside the button.
 - ```"short"``` will place the property ```ddLocale.language``` inside the button.
 - An empty string ```""``` will leave button empty.
 - Any other string is considered a ```key``` to be translated.
-**menu:** without the ```menu``` option, the button cycles through the available languages. With the ```menu``` option selected, the button opens a popup menu with all available languages ​​from ```cultures```. The value of ```menu``` is used as the className to style the popup menu.
+**menu:** without the ```menu``` option, the button of the built-in button cycles through the available languages. With the ```menu``` option, the button opens a popup menu with all available languages ​​from ```cultures```. The value of ```menu``` is used as the className to style the popup menu.
+
+**engine:** With ```ddMenu```, the only engine currently available, a more flexible system is used. Of course, ```ddMenu``` must be installed, but then you can share functionality and styling.
 
 ### ready
 The ```ready()``` function will be called each time a new language is set and loaded. Use this function to save user settings with the new language for example.
@@ -397,7 +402,7 @@ To use the ```ddLocale``` menu you will need a placeholder in your HTML document
 ```
 	<div id="language"></div>
 ```
-This is an example of what the functional menu looks like after initialisation with ```domId="language"``` and ```menu.menu=left```. With ```css``` you can style the menu, using ```id```, ```class``` and ```atrributes```.
+This is an example of what the built-in functional menu looks like after initialisation with ```domId="language"``` and ```menu.align=left```. With ```css``` you can style the menu, using ```id```, ```class``` and ```atrributes```.
 ```
 	<div id="language" culture="nl-NL" class="open">
 		<a id="language-menu-button"></a>
@@ -408,7 +413,36 @@ This is an example of what the functional menu looks like after initialisation w
 	</div>
 ```
 Use the ```autoOpen``` and ```autoClose``` options to open and close the menu without clicking. These option values ​​are in milliseconds. The ```autoClose``` timing should be long enough, depending on the distance between the button and the popup menu, otherwise the menu will close before the mouse reaches menu.
-
+<br/><br/> 
+To use ```ddLMenu``` add ```engine: 'ddMenu'``` to the menu settings, along with the addtional ```ddMenu``` options.
+```
+	menu: {
+		domId: 'language',
+		text: '', // long, short or translation key
+		align: 'center', // className
+		autoOpen: null,
+		autoClose: 500,
+		engine: 'ddMenu', // or false/null/not set
+		className: 'language',
+		multilingual: true, // use ddLocale
+		updateTitleOnSelect: true,
+		autoOpen: 250,
+		autoClose: 500,
+		animation: 100,
+		badge: 0,
+		extraHeight: 20, // necessary for some browsers
+		triggerIcon: 'icon-user',  // CSS class for your icon
+		iconPosition: 'right',
+		change: (e, trigger) => {
+			ddLocale.set({
+				culture: trigger.item.value
+			});
+		},
+		items: {
+			iconPosition: 'right'
+		}
+	}
+```
 ## css
 
 Below is a simple css example to style the menu.
